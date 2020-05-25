@@ -1,0 +1,8 @@
+config BR2_PACKAGE_KUBERNETES
+	bool "kubernetes"
+	default y
+	depends on BR2_x86_64
+	help
+	  Production-Grade Container Orchestration
+
+	  https://kubernetes.io/

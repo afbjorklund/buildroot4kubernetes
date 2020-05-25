@@ -28,10 +28,14 @@ iso: buildroot/.config
 	@mkdir -p output
 	cp buildroot/output/images/rootfs.iso9660 output/buildroot.iso
 
-run: output/buildroot.iso
+disk.img:
+	qemu-img create -f qcow2 $@ 40g
+
+run: output/buildroot.iso disk.img
 	test -e /dev/kvm && kvm=-enable-kvm; \
 	net="-net nic,model=virtio -net user"; \
-	qemu-system-x86_64 $$kvm -M pc -smp 2 -m 2048 $$net -cdrom $<
+	qemu-system-x86_64 $$kvm -M pc -smp 2 -m 2048 $$net \
+	-cdrom output/buildroot.iso -hda disk.img -boot d
 
 # reference board
 qemu_x86_64: buildroot

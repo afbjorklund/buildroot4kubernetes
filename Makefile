@@ -30,7 +30,7 @@ iso: buildroot/.config
 	cp buildroot/output/images/rootfs.iso9660 output/buildroot.iso
 
 disk.img:
-	qemu-img create -f qcow2 $@ 40g
+	qemu-img create -f qcow2 $@ 20g
 
 run: output/buildroot.iso disk.img
 	test -e /dev/kvm && kvm=-enable-kvm; \

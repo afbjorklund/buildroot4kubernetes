@@ -27,6 +27,12 @@ User
 * conntrack (required since 1.18)
 
 
+Bootable image:
+
+```
+126M	output/buildroot.iso
+```
+
 Reference board:
 
 `qemu/x86_64`

@@ -7,7 +7,8 @@ BUILDROOT_BRANCH = 2020.02.x
 BUILDROOT_OPTIONS = BR2_EXTERNAL=$(PWD)/external
 
 buildroot:
-	git clone --single-branch --branch=$(BUILDROOT_BRANCH) --no-tags --depth=1 https://github.com/buildroot/buildroot
+	git clone --single-branch --branch=$(BUILDROOT_BRANCH) \
+	          --no-tags --depth=1 https://github.com/buildroot/buildroot
 
 buildroot/.config: buildroot buildroot_defconfig kernel_defconfig
 	cp buildroot_defconfig buildroot/.config

@@ -59,6 +59,8 @@ k8s.gcr.io/coredns                   1.6.7               67da37a9a360        4 m
 k8s.gcr.io/etcd                      3.4.3-0             303ce5db0e90        7 months ago        288MB
 ```
 
+![image size](image-size.png)
+
 `docker save | xz`:
 
 ```

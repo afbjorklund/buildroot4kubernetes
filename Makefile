@@ -38,6 +38,13 @@ run: output/buildroot.iso disk.img
 	qemu-system-x86_64 $$kvm -M pc -smp 2 -m 2048 $$net \
 	-cdrom output/buildroot.iso -hda disk.img -boot d
 
+KUBEADM = kubeadm
+DOCKER = docker
+
+images.txz:
+	$(KUBEADM) config images list | xargs -n 1 $(DOCKER) pull
+	$(KUBEADM) config images list | xargs $(DOCKER) save | xz > $@
+
 # reference board
 qemu_x86_64: buildroot
 	$(MAKE) -C buildroot qemu_x86_64_defconfig

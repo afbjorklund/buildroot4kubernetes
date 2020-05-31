@@ -46,6 +46,21 @@ k8s.gcr.io/etcd:3.4.3-0
 k8s.gcr.io/coredns:1.6.7
 ```
 
+`docker images`:
+
+```
+REPOSITORY                           TAG                 IMAGE ID            CREATED             SIZE
+k8s.gcr.io/kube-proxy                v1.18.3             3439b7546f29        11 days ago         117MB
+k8s.gcr.io/kube-scheduler            v1.18.3             76216c34ed0c        11 days ago         95.3MB
+k8s.gcr.io/kube-controller-manager   v1.18.3             da26705ccb4b        11 days ago         162MB
+k8s.gcr.io/kube-apiserver            v1.18.3             7e28efa976bd        11 days ago         173MB
+k8s.gcr.io/pause                     3.2                 80d28bedfe5d        3 months ago        683kB
+k8s.gcr.io/coredns                   1.6.7               67da37a9a360        4 months ago        43.8MB
+k8s.gcr.io/etcd                      3.4.3-0             303ce5db0e90        7 months ago        288MB
+```
+
+`docker save | xz`:
+
 ```
 154M    images.txz
 ```

@@ -30,6 +30,8 @@ BR2_LINUX_KERNEL_CUSTOM_CONFIG_FILE="$(BR2_EXTERNAL_KUBERNETES_PATH)/linux.confi
 
 #######################################################################
 
+BR2_ROOTFS_OVERLAY="$(BR2_EXTERNAL_KUBERNETES_PATH)/rootfs-overlay"
+
 BR2_CCACHE=y
 
 BR2_PACKAGE_HAVEGED=y

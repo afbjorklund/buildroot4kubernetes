@@ -27,6 +27,8 @@ User
 * conntrack (required since 1.18)
 
 
+![graph size](graph-size.png)
+
 Bootable image:
 
 ```

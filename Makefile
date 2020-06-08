@@ -32,12 +32,16 @@ iso: buildroot/.config
 disk.img:
 	qemu-img create -f qcow2 $@ 20g
 
+data.img:
+	qemu-img create -f qcow2 $@ 5g
+
 run: output/buildroot.iso disk.img
 	test -e /dev/kvm && kvm=-enable-kvm; \
 	net="-net nic,model=virtio -net user"; \
+	test -e data.img && hdb="-hdb data.img"; \
 	test -e images.iso && hdd="-hdd images.iso"; \
 	qemu-system-x86_64 $$kvm -M pc -smp 2 -m 2048 $$net \
-	-cdrom output/buildroot.iso -hda disk.img -boot d $$hdd
+	-cdrom output/buildroot.iso -hda disk.img $$hdb $$hdd -boot d
 
 KUBEADM = kubeadm
 DOCKER = docker

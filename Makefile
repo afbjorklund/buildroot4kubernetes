@@ -35,15 +35,22 @@ disk.img:
 run: output/buildroot.iso disk.img
 	test -e /dev/kvm && kvm=-enable-kvm; \
 	net="-net nic,model=virtio -net user"; \
+	test -e images.iso && hdd="-hdd images.iso"; \
 	qemu-system-x86_64 $$kvm -M pc -smp 2 -m 2048 $$net \
-	-cdrom output/buildroot.iso -hda disk.img -boot d
+	-cdrom output/buildroot.iso -hda disk.img -boot d $$hdd
 
 KUBEADM = kubeadm
 DOCKER = docker
 
+images.txt:
+	$(KUBEADM) config images list > $@
+
 images.txz:
 	$(KUBEADM) config images list | xargs -n 1 $(DOCKER) pull
 	$(KUBEADM) config images list | xargs $(DOCKER) save | xz > $@
+
+images.iso: images.txt images.txz
+	genisoimage -output $@ $^
 
 # reference board
 qemu_x86_64: buildroot

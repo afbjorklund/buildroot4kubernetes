@@ -1,3 +1,6 @@
 buildroot
 output
 disk.img
+images.txt
+images.txz
+images.iso

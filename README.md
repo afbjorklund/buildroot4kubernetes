@@ -35,6 +35,14 @@ Bootable image:
 126M	output/buildroot.iso
 ```
 
+Kubernetes bin:
+
+```
+38M     kubeadm
+42M     kubectl
+109M    kubelet
+```
+
 Required images:
 
 ```console

@@ -1,6 +1,7 @@
-buildroot
-output
+buildroot/
+output/
 disk.img
+data.img
 images.txt
 images.txz
 images.iso

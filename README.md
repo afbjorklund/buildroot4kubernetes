@@ -67,6 +67,11 @@ k8s.gcr.io/etcd                      3.4.3-0             303ce5db0e90        7 m
 154M    images.txz
 ```
 
+```
+Strms  Blocks   Compressed Uncompressed  Ratio  Check   Filename
+    1       1    153.6 MiB    693.7 MiB  0.221  CRC64   images.txz
+```
+
 Reference board:
 
 `qemu/x86_64`

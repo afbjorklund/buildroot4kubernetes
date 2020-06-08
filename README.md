@@ -72,6 +72,15 @@ Strms  Blocks   Compressed Uncompressed  Ratio  Check   Filename
     1       1    153.6 MiB    693.7 MiB  0.221  CRC64   images.txz
 ```
 
+Device layout:
+
+| QEMU | File          | Media | Device   | Used for          | Size |
+| ---- | ------------- | ----- | -------- | ----------------- | ---- |
+| -hda | disk.img      | disk  | /dev/sda | Persistent `/var` |  20g |
+| -hdb | data.img      | disk  | /dev/sdb | Persistent `/data`|   5g |
+| -hdc | buildroot.iso | cdrom |          | Buildroot booting | 126m |
+| -hdd | images.iso    | cdrom | /dev/sdc | Kubernetes images | 154m |
+
 Reference board:
 
 `qemu/x86_64`

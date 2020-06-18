@@ -1,6 +1,6 @@
 
 
-all: iso
+all: zip
 
 BUILDROOT_BRANCH = 2020.02.x
 
@@ -23,25 +23,17 @@ clean:
 	rm -f buildroot/.config
 	$(MAKE) -C buildroot $(BUILDROOT_OPTIONS) clean
 
+img: output/sdcard.img
+zip: output/sdcard.img.zip
+
 # buildroot/output
-iso: buildroot/.config
+output/sdcard.img: buildroot/.config
 	$(MAKE) -C buildroot $(BUILDROOT_OPTIONS) all
 	@mkdir -p output
-	cp buildroot/output/images/rootfs.iso9660 output/buildroot.iso
+	cp buildroot/output/images/sdcard.img output/sdcard.img
 
-disk.img:
-	qemu-img create -f qcow2 $@ 20g
-
-data.img:
-	qemu-img create -f qcow2 $@ 5g
-
-run: output/buildroot.iso disk.img
-	test -e /dev/kvm && kvm=-enable-kvm; \
-	net="-net nic,model=virtio -net user"; \
-	test -e data.img && hdb="-hdb data.img"; \
-	test -e images.iso && hdd="-hdd images.iso"; \
-	qemu-system-x86_64 $$kvm -M pc -smp 2 -m 2048 $$net \
-	-cdrom output/buildroot.iso -hda disk.img $$hdb $$hdd -boot d
+output/sdcard.img.zip: output/sdcard.img
+	cd output && zip sdcard.img.zip sdcard.img
 
 KUBEADM = kubeadm
 DOCKER = docker
@@ -49,17 +41,20 @@ DOCKER = docker
 images.txt:
 	$(KUBEADM) config images list > $@
 
-images.txz:
-	$(KUBEADM) config images list | xargs -n 1 $(DOCKER) pull
-	$(KUBEADM) config images list | xargs $(DOCKER) save | xz > $@
+images.tar:
+	$(KUBEADM) config images list | xargs -n 1 $(DOCKER) pull --platform=linux/arm64
+	$(KUBEADM) config images list | xargs $(DOCKER) save --output $@
 
-images.iso: images.txt images.txz
-	genisoimage -output $@ $^
+images.tar.gz: images.tar
+	pigz < $< > $@
+
+images.tar.xz: images.tar
+	pixz < $< > $@
 
 # reference board
-qemu_x86_64: buildroot
-	$(MAKE) -C buildroot qemu_x86_64_defconfig
+raspberrypi3_64: buildroot
+	$(MAKE) -C buildroot raspberrypi3_64_defconfig
 	$(MAKE) -C buildroot world
 	@mkdir -p output/images
-	cp buildroot/output/images/bzImage output/images/
-	cp buildroot/output/images/rootfs.ext2 output/images/
+	cp buildroot/output/images/boot.vfat output/images/
+	cp buildroot/output/images/rootfs.ext4 output/images/

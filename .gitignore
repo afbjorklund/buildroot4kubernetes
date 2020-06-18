@@ -5,3 +5,6 @@ data.img
 images.txt
 images.txz
 images.iso
+images.tar
+images.tar.gz
+images.tar.xz

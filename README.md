@@ -1,4 +1,4 @@
-buildroot2kubernetes
+buildroot4kubernetes
 ====================
 
 Build a minimal environment with Buildroot, enough for running kubeadm for Kubernetes.

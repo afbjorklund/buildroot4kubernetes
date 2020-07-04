@@ -5,28 +5,22 @@
 ################################################################################
 
 KUBERNETES_VERSION = 1.18.3
-KUBERNETES_SITE = https://storage.googleapis.com/kubernetes-release/release/v$(KUBERNETES_VERSION)/bin/linux/amd64
+KUBERNETES_SITE = https://github.com/kubernetes/kubernetes/archive
 KUBERNETES_LICENSE = Apache-2.0
 
-KUBERNETES_SOURCE = kubeadm
-KUBERNETES_EXTRA_DOWNLOADS = kubelet kubectl
-
-KUBERNETES_ACTUAL_SOURCE_SITE = https://github.com/kubernetes/kubernetes/archive
-KUBERNETES_ACTUAL_SOURCE_TARBALL = v$(KUBERNETES_VERSION).tar.gz
+KUBERNETES_SOURCE = v$(KUBERNETES_VERSION).tar.gz
 
 # See https://github.com/kubernetes/release
 KUBERNETES_KUBEPKG_RELEASE_VERSION = v0.3.2
 
-define KUBERNETES_EXTRACT_CMDS
-endef
-
 define KUBERNETES_BUILD_CMDS
+	$(TARGET_MAKE_ENV) $(MAKE) -C $(@D) all WHAT="cmd/kubeadm cmd/kubelet cmd/kubectl" KUBE_BUILD_PLATFORMS="linux/$(GO_GOARCH)"
 endef
 
 define KUBERNETES_INSTALL_TARGET_CMDS
-$(INSTALL) -D -m 0755 $(KUBERNETES_DL_DIR)/kubeadm $(TARGET_DIR)/usr/bin
-$(INSTALL) -D -m 0755 $(KUBERNETES_DL_DIR)/kubelet $(TARGET_DIR)/usr/bin
-$(INSTALL) -D -m 0755 $(KUBERNETES_DL_DIR)/kubectl $(TARGET_DIR)/usr/bin
+$(INSTALL) -D -m 0755 $(@D)/_output/local/bin/linux/$(GO_GOARCH)/kubeadm $(TARGET_DIR)/usr/bin
+$(INSTALL) -D -m 0755 $(@D)/_output/local/bin/linux/$(GO_GOARCH)/kubelet $(TARGET_DIR)/usr/bin
+$(INSTALL) -D -m 0755 $(@D)/_output/local/bin/linux/$(GO_GOARCH)/kubectl $(TARGET_DIR)/usr/bin
 endef
 
 define KUBERNETES_INSTALL_INIT_SYSTEMD

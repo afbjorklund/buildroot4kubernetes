@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-KUBERNETES_VERSION = 1.18.3
+KUBERNETES_VERSION = 1.18.4
 KUBERNETES_SITE = https://github.com/kubernetes/kubernetes/archive
 KUBERNETES_LICENSE = Apache-2.0
 

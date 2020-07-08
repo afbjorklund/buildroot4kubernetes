@@ -52,7 +52,7 @@ images.txt:
 
 images.txz: images.txt
 	xargs -n 1 $(DOCKER) pull < $<
-	xargs $(DOCKER) save < $< | xz > $@
+	xargs $(DOCKER) save < $< | pixz > $@
 
 images.iso: images.txt images.txz
 	genisoimage -output $@ $^

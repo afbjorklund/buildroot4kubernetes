@@ -48,6 +48,7 @@ DOCKER = docker
 
 images.txt:
 	$(KUBEADM) config images list > $@
+	echo "quay.io/coreos/flannel:v0.12.0" >> $@
 
 images.txz: images.txt
 	xargs -n 1 $(DOCKER) pull < $<

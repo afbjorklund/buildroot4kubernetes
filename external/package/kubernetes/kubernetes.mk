@@ -14,6 +14,7 @@ KUBERNETES_SOURCE = v$(KUBERNETES_VERSION).tar.gz
 KUBERNETES_KUBEPKG_RELEASE_VERSION = v0.3.2
 
 define KUBERNETES_BUILD_CMDS
+	$(TARGET_MAKE_ENV) $(MAKE) -C $(@D) generated_files
 	$(TARGET_MAKE_ENV) $(MAKE) -C $(@D) all WHAT="cmd/kubeadm cmd/kubelet cmd/kubectl" KUBE_BUILD_PLATFORMS="linux/$(GO_GOARCH)"
 endef
 

@@ -41,9 +41,9 @@ DOCKER = docker
 images.txt:
 	$(KUBEADM) config images list > $@
 
-images.tar:
-	$(KUBEADM) config images list | xargs -n 1 $(DOCKER) pull --platform=linux/arm64
-	$(KUBEADM) config images list | xargs $(DOCKER) save --output $@
+images.tar: images.txt
+	xargs -n 1 $(DOCKER) pull --platform=linux/arm64 < $<
+	xargs $(DOCKER) save --output $@ < $<
 
 images.tar.gz: images.tar
 	pigz < $< > $@

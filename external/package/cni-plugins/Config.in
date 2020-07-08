@@ -1,0 +1,5 @@
+config BR2_PACKAGE_CNI_PLUGINS
+	bool "cni-plugins"
+	depends on BR2_PACKAGE_HOST_GO_TARGET_ARCH_SUPPORTS
+	help
+	  Some CNI network plugins, maintained by the containernetworking team.

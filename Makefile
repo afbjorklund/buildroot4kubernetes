@@ -49,9 +49,9 @@ DOCKER = docker
 images.txt:
 	$(KUBEADM) config images list > $@
 
-images.txz:
-	$(KUBEADM) config images list | xargs -n 1 $(DOCKER) pull
-	$(KUBEADM) config images list | xargs $(DOCKER) save | xz > $@
+images.txz: images.txt
+	xargs -n 1 $(DOCKER) pull < $<
+	xargs $(DOCKER) save < $< | xz > $@
 
 images.iso: images.txt images.txz
 	genisoimage -output $@ $^

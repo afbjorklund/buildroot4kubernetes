@@ -1,3 +1,4 @@
 menu "Kubernetes"
     source "$BR2_EXTERNAL_KUBERNETES_PATH/package/kubernetes/Config.in"
+    source "$BR2_EXTERNAL_KUBERNETES_PATH/package/cri-tools/Config.in"
 endmenu

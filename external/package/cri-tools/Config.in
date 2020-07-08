@@ -1,0 +1,18 @@
+config BR2_PACKAGE_CRI_TOOLS
+	bool "cri-tools"
+	depends on BR2_PACKAGE_HOST_GO_TARGET_ARCH_SUPPORTS
+	help
+	  CLI and validation tools for Kubelet Container Runtime Interface (CRI)
+
+config BR2_PACKAGE_CRI_TOOLS_CRICTL
+	bool "crictl binary"
+        default y
+	help
+	  Install crictl binary
+
+config BR2_PACKAGE_CRI_TOOLS_CRITEST
+	bool "critest binary"
+        default n
+	help
+	  Install critest binary
+

@@ -38,9 +38,16 @@ output/sdcard.img.zip: output/sdcard.img
 KUBEADM = kubeadm
 DOCKER = docker
 
+GOOS = linux
+GOARCH = arm64
+
+# /etc/kubernetes/flannel.yml
+# https://raw.githubusercontent.com/coreos/flannel/v0.12.0/Documentation/kube-flannel.yml
+
 images.txt:
+	echo $$DOCKER
 	$(KUBEADM) config images list > $@
-	echo "quay.io/coreos/flannel:v0.12.0" >> $@
+	echo "quay.io/coreos/flannel:v0.12.0-$(GOARCH)" >> $@
 
 images.tar: images.txt
 	xargs -n 1 $(DOCKER) pull --platform=linux/arm64 < $<

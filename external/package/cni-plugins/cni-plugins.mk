@@ -18,11 +18,12 @@ CNI_PLUGINS_BUILDFLAGS = -ldflags '-extldflags -static -X github.com/containerne
 
 ifeq ($(BR2_PACKAGE_CNI_PLUGINS_BASIC),y)
 	CNI_PLUGINS_PROGRAMS += bridge loopback ptp
+	CNI_PLUGINS_PROGRAMS += host-local
 	CNI_PLUGINS_PROGRAMS += flannel portmap sbr
 endif
 ifeq ($(BR2_PACKAGE_CNI_PLUGINS_EXTRA),y)
 	CNI_PLUGINS_PROGRAMS += ipvlan macvlan vlan host-device
-	CNI_PLUGINS_PROGRAMS += dhcp host-local static
+	CNI_PLUGINS_PROGRAMS += dhcp static
 	CNI_PLUGINS_PROGRAMS += tuning bandwidth firewall
 endif
 

@@ -4,6 +4,8 @@ config BR2_PACKAGE_CNI_PLUGINS
 	help
 	  Some CNI network plugins, maintained by the containernetworking team.
 
+if BR2_PACKAGE_CNI_PLUGINS
+
 config BR2_PACKAGE_CNI_PLUGINS_BASIC
 	bool "basic plugins"
         default y
@@ -15,3 +17,5 @@ config BR2_PACKAGE_CNI_PLUGINS_EXTRA
         default n
 	help
 	  Install extra plugins
+
+endif

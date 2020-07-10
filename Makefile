@@ -59,6 +59,19 @@ images.tar.gz: images.tar
 images.tar.xz: images.tar
 	pixz < $< > $@
 
+PYTHON = python
+
+FORMAT = '{{.VirtualSize}}'
+
+sizes.txt: images.txt
+	xargs -n 1 $(DOCKER) images --format $(FORMAT) < $< > $@
+
+image-size.png: images.txt sizes.txt
+	$(PYTHON) image-size.py $^ $@
+
+image-size.pdf: images.txt sizes.txt
+	$(PYTHON) image-size.py $^ $@
+
 # reference board
 raspberrypi3_64: buildroot
 	$(MAKE) -C buildroot raspberrypi3_64_defconfig

@@ -32,7 +32,7 @@ User
 Bootable image:
 
 ```
-126M	output/buildroot.iso
+143M	output/buildroot.iso
 ```
 
 Kubernetes bin:
@@ -47,10 +47,10 @@ Required images:
 
 ```console
 $ kubeadm config images list
-k8s.gcr.io/kube-apiserver:v1.18.3
-k8s.gcr.io/kube-controller-manager:v1.18.3
-k8s.gcr.io/kube-scheduler:v1.18.3
-k8s.gcr.io/kube-proxy:v1.18.3
+k8s.gcr.io/kube-apiserver:v1.18.5
+k8s.gcr.io/kube-controller-manager:v1.18.5
+k8s.gcr.io/kube-scheduler:v1.18.5
+k8s.gcr.io/kube-proxy:v1.18.5
 k8s.gcr.io/pause:3.2
 k8s.gcr.io/etcd:3.4.3-0
 k8s.gcr.io/coredns:1.6.7
@@ -60,13 +60,14 @@ k8s.gcr.io/coredns:1.6.7
 
 ```
 REPOSITORY                           TAG                 IMAGE ID            CREATED             SIZE
-k8s.gcr.io/kube-proxy                v1.18.3             3439b7546f29        11 days ago         117MB
-k8s.gcr.io/kube-scheduler            v1.18.3             76216c34ed0c        11 days ago         95.3MB
-k8s.gcr.io/kube-controller-manager   v1.18.3             da26705ccb4b        11 days ago         162MB
-k8s.gcr.io/kube-apiserver            v1.18.3             7e28efa976bd        11 days ago         173MB
-k8s.gcr.io/pause                     3.2                 80d28bedfe5d        3 months ago        683kB
-k8s.gcr.io/coredns                   1.6.7               67da37a9a360        4 months ago        43.8MB
-k8s.gcr.io/etcd                      3.4.3-0             303ce5db0e90        7 months ago        288MB
+k8s.gcr.io/kube-proxy                v1.18.5             a1daed4e2b60        2 weeks ago         117MB
+k8s.gcr.io/kube-controller-manager   v1.18.5             8d69eaf196dc        2 weeks ago         162MB
+k8s.gcr.io/kube-apiserver            v1.18.5             08ca24f16874        2 weeks ago         173MB
+k8s.gcr.io/kube-scheduler            v1.18.5             39d887c6621d        2 weeks ago         95.3MB
+k8s.gcr.io/pause                     3.2                 80d28bedfe5d        4 months ago        683kB
+k8s.gcr.io/coredns                   1.6.7               67da37a9a360        5 months ago        43.8MB
+k8s.gcr.io/etcd                      3.4.3-0             303ce5db0e90        8 months ago        288MB
+quay.io/coreos/flannel               v0.12.0-amd64       4e9f801d2217        3 months ago        52.8MB
 ```
 
 ![image size](image-size.png)
@@ -74,12 +75,12 @@ k8s.gcr.io/etcd                      3.4.3-0             303ce5db0e90        7 m
 `docker save | xz`:
 
 ```
-154M    images.txz
+167M	images.txz
 ```
 
 ```
 Strms  Blocks   Compressed Uncompressed  Ratio  Check   Filename
-    1       1    153.6 MiB    693.7 MiB  0.221  CRC64   images.txz
+    1      48    166.5 MiB    745.0 MiB  0.224  CRC32   images.txz
 ```
 
 Device layout:
@@ -88,8 +89,8 @@ Device layout:
 | ---- | ------------- | ----- | -------- | ----------------- | ---- |
 | -hda | disk.img      | disk  | /dev/sda | Persistent `/var` |  20g |
 | -hdb | data.img      | disk  | /dev/sdb | Persistent `/data`|   5g |
-| -hdc | buildroot.iso | cdrom |          | Buildroot booting | 126m |
-| -hdd | images.iso    | cdrom | /dev/sdc | Kubernetes images | 154m |
+| -hdc | buildroot.iso | cdrom |          | Buildroot booting | 143m |
+| -hdd | images.iso    | cdrom | /dev/sdc | Kubernetes images | 167m |
 
 Reference board:
 

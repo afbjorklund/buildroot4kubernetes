@@ -64,6 +64,19 @@ images.txz: images.txt
 images.iso: images.txt images.txz
 	genisoimage -output $@ $^
 
+PYTHON = python
+
+FORMAT = '{{.VirtualSize}}'
+
+sizes.txt: images.txt
+	xargs -n 1 $(DOCKER) images --format $(FORMAT) < $< > $@
+
+image-size.png: images.txt sizes.txt
+	$(PYTHON) image-size.py $^ $@
+
+image-size.pdf: images.txt sizes.txt
+	$(PYTHON) image-size.py $^ $@
+
 # reference board
 qemu_x86_64: buildroot
 	$(MAKE) -C buildroot qemu_x86_64_defconfig

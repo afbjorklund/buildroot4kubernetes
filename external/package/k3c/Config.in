@@ -1,7 +1,7 @@
 config BR2_PACKAGE_K3C
 	bool "k3c"
 	depends on BR2_PACKAGE_HOST_GO_TARGET_ARCH_SUPPORTS
-	select BR2_PACKAGE_RUNC # runtime dependency
+	select BR2_PACKAGE_K3S # for containerd
 	help
 	  Classic Docker for a Kubernetes World
 

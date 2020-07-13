@@ -11,7 +11,7 @@ CNI_PLUGINS_LICENSE = Apache-2.0
 CNI_PLUGINS_SOURCE = v$(CNI_PLUGINS_VERSION).tar.gz
 
 CNI_PLUGINS_MAKE_ENV = \
-	CGO_ENABLED=0 \
+	$(GO_TARGET_ENV) \
 	GO111MODULE=on
 
 CNI_PLUGINS_BUILDFLAGS = -ldflags '-extldflags -static -X github.com/containernetworking/plugins/pkg/utils/buildversion.BuildVersion=v$(CNI_PLUGINS_VERSION)'

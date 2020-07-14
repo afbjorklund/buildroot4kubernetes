@@ -9,10 +9,3 @@ BOARD_DIR=$(dirname "$0")
 
 mkdir -p $TARGET_DIR/etc/systemd/system/getty.target.wants
 ln -sf /lib/systemd/system/getty@.service $TARGET_DIR/etc/systemd/system/getty.target.wants/getty@tty1.service
-
-# https://kubernetes.io/docs/setup/production-environment/container-runtimes/#docker
-
-mkdir -p $TARGET_DIR/etc/docker
-cp $BOARD_DIR/daemon.json $TARGET_DIR/etc/docker
-
-mkdir -p $TARGET_DIR/etc/systemd/system/docker.service.d

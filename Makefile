@@ -23,17 +23,17 @@ clean:
 	rm -f buildroot/.config
 	$(MAKE) -C buildroot $(BUILDROOT_OPTIONS) clean
 
-img: output/sdcard.img
-zip: output/sdcard.img.zip
+img: output/sdcard0.img
+zip: output/sdcard0.img.zip
 
 # buildroot/output
-output/sdcard.img: buildroot/.config
+output/sdcard0.img: buildroot/.config
 	$(MAKE) -C buildroot $(BUILDROOT_OPTIONS) all
 	@mkdir -p output
-	cp buildroot/output/images/sdcard.img output/sdcard.img
+	cp buildroot/output/images/sdcard0.img output/sdcard0.img
 
-output/sdcard.img.zip: output/sdcard.img
-	cd output && zip sdcard.img.zip sdcard.img
+output/sdcard0.img.zip: output/sdcard0.img
+	cd output && zip sdcardi0.img.zip sdcard0.img
 
 KUBEADM = kubeadm
 DOCKER = docker

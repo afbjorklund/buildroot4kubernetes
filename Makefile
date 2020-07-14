@@ -39,7 +39,7 @@ KUBEADM = kubeadm
 DOCKER = docker
 
 GOOS = linux
-GOARCH = arm64
+GOARCH = arm
 
 # /etc/kubernetes/flannel.yml
 # https://raw.githubusercontent.com/coreos/flannel/v0.12.0/Documentation/kube-flannel.yml
@@ -50,7 +50,7 @@ images.txt:
 	echo "quay.io/coreos/flannel:v0.12.0-$(GOARCH)" >> $@
 
 images.tar: images.txt
-	xargs -n 1 $(DOCKER) pull --platform=linux/arm64 < $<
+	xargs -n 1 $(DOCKER) pull --platform=linux/arm < $<
 	xargs $(DOCKER) save --output $@ < $<
 
 images.tar.gz: images.tar
@@ -73,8 +73,8 @@ image-size.pdf: images.txt sizes.txt
 	$(PYTHON) image-size.py $^ $@
 
 # reference board
-raspberrypi3_64: buildroot
-	$(MAKE) -C buildroot raspberrypi3_64_defconfig
+raspberrypi0w: buildroot
+	$(MAKE) -C buildroot raspberrypi0w_defconfig
 	$(MAKE) -C buildroot world
 	@mkdir -p output/images
 	cp buildroot/output/images/boot.vfat output/images/

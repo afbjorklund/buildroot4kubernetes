@@ -10,6 +10,10 @@ K3S_LICENSE = Apache-2.0
 
 K3S_SOURCE = v$(K3S_VERSION).tar.gz
 
+K3S_MAKE_ENV = \
+	$(GO_TARGET_ENV) \
+	GO111MODULE=on
+
 K3S_TAGS = ctrd apparmor no_btrfs netcgo osusergo providerless
 K3S_LDFLAGS = -X github.com/rancher/k3s/pkg/version.Version=v$(K3S_VERSION) -w -s
 
@@ -19,10 +23,10 @@ K3S_DEPENDENCIES += libseccomp
 endif
 
 define K3S_BUILD_CMDS
-	cd $(@D) && $(GO_TARGET_ENV) GO111MODULE=on \
+	cd $(@D) && $(K3S_MAKE_ENV) \
 	$(GO_BIN) build -mod vendor -tags "$(K3S_TAGS)" -ldflags "$(K3S_LDFLAGS)" -o bin/containerd ./cmd/server/main.go
-	make -C $(@D)/vendor/github.com/containerd/containerd bin/containerd-shim
-	make -C $(@D)/vendor/github.com/containerd/containerd bin/containerd-shim-runc-v2
+	$(K3S_MAKE_ENV) make -C $(@D)/vendor/github.com/containerd/containerd bin/containerd-shim
+	$(K3S_MAKE_ENV) make -C $(@D)/vendor/github.com/containerd/containerd bin/containerd-shim-runc-v2
 endef
 
 define K3S_INSTALL_TARGET_CMDS

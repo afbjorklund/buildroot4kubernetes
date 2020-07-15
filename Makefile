@@ -30,7 +30,7 @@ zip: output/sdcard0.img.zip
 output/sdcard0.img: buildroot/.config
 	$(MAKE) -C buildroot $(BUILDROOT_OPTIONS) all
 	@mkdir -p output
-	cp buildroot/output/images/sdcard0.img output/sdcard0.img
+	cp buildroot/output/images/sdcard.img output/sdcard0.img
 
 output/sdcard0.img.zip: output/sdcard0.img
 	cd output && zip sdcardi0.img.zip sdcard0.img

@@ -33,7 +33,7 @@ output/sdcard0.img: buildroot/.config
 	cp buildroot/output/images/sdcard.img output/sdcard0.img
 
 output/sdcard0.img.zip: output/sdcard0.img
-	cd output && zip sdcardi0.img.zip sdcard0.img
+	cd output && zip sdcard0.img.zip sdcard0.img
 
 KUBEADM = kubeadm
 DOCKER = docker

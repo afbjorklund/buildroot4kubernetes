@@ -25,8 +25,8 @@ endif
 define K3S_BUILD_CMDS
 	cd $(@D) && $(K3S_MAKE_ENV) \
 	$(GO_BIN) build -mod vendor -tags "$(K3S_TAGS)" -ldflags "$(K3S_LDFLAGS)" -o bin/containerd ./cmd/server/main.go
-	$(K3S_MAKE_ENV) make -C $(@D)/vendor/github.com/containerd/containerd bin/containerd-shim
-	$(K3S_MAKE_ENV) make -C $(@D)/vendor/github.com/containerd/containerd bin/containerd-shim-runc-v2
+	$(K3S_MAKE_ENV) GO_BUILD_FLAGS="-mod vendor" make -C $(@D)/vendor/github.com/containerd/containerd bin/containerd-shim
+	$(K3S_MAKE_ENV) GO_BUILD_FLAGS="-mod vendor" make -C $(@D)/vendor/github.com/containerd/containerd bin/containerd-shim-runc-v2
 endef
 
 define K3S_INSTALL_TARGET_CMDS

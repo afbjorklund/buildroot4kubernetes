@@ -1,7 +1,7 @@
 buildroot4kubernetes
 ====================
 
-Build a minimal environment with Buildroot, enough for running kubeadm for Kubernetes.
+Build a minimal environment with Buildroot, enough for running kubeadm/k3s for Kubernetes.
 
 So basically the "bigger brother" of boot2docker... Or a smaller version of minikube.iso.
 

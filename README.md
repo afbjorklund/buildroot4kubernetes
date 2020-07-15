@@ -34,9 +34,8 @@ Flashable image:
 
 ```
 143M	output/sdcard.img.zip
-
-
 ```
+
 ![image size](image-size.png)
 
 

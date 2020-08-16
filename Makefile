@@ -1,6 +1,6 @@
 
 
-all: iso
+all: zip
 
 BUILDROOT_BRANCH = 2020.02.x
 
@@ -23,25 +23,32 @@ clean:
 	rm -f buildroot/.config
 	$(MAKE) -C buildroot $(BUILDROOT_OPTIONS) clean
 
+img: output/disk.img
+zip: output/disk.img.gz
+
 # buildroot/output
-iso: buildroot/.config
+output/disk.img: buildroot/.config
 	$(MAKE) -C buildroot $(BUILDROOT_OPTIONS) all
 	@mkdir -p output
-	cp buildroot/output/images/rootfs.iso9660 output/buildroot.iso
+	cp buildroot/output/images/disk.img output/disk.img
+
+output/disk.img.gz: output/disk.img
+	cd output && gzip -9 >disk.img.gz <disk.img
 
 disk.img:
-	qemu-img create -f qcow2 $@ 20g
+	qemu-img convert -f raw -O qcow2 output/disk.img $@
+	qemu-img resize $@ 20G
 
 data.img:
 	qemu-img create -f qcow2 $@ 5g
 
-run: output/buildroot.iso disk.img
+run: disk.img
 	test -e /dev/kvm && kvm=-enable-kvm; \
 	net="-net nic,model=virtio -net user"; \
 	test -e data.img && hdb="-hdb data.img"; \
 	test -e images.iso && hdd="-hdd images.iso"; \
 	qemu-system-x86_64 $$kvm -M pc -smp 2 -m 2048 $$net \
-	-cdrom output/buildroot.iso -hda disk.img $$hdb $$hdd -boot d
+	-drive file=disk.img,if=virtio $$hdb $$hdd -boot c
 
 KUBEADM = kubeadm
 DOCKER = docker
@@ -78,8 +85,8 @@ image-size.pdf: images.txt sizes.txt
 	$(PYTHON) image-size.py $^ $@
 
 # reference board
-qemu_x86_64: buildroot
-	$(MAKE) -C buildroot qemu_x86_64_defconfig
+pc_x86_64_bios: buildroot
+	$(MAKE) -C buildroot pc_x86_64_bios_defconfig
 	$(MAKE) -C buildroot world
 	@mkdir -p output/images
 	cp buildroot/output/images/bzImage output/images/

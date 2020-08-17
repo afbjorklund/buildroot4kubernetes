@@ -97,6 +97,6 @@ Reference board:
 `pc` (bios)
 
 ```
-4.3M	output/images/bzImage
-3.9M	output/images/rootfs.ext2
+4.9M	output/images/bzImage
+84M	output/images/rootfs.ext2
 ```

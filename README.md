@@ -32,7 +32,7 @@ User
 Bootable image:
 
 ```
-147M	output/disk.img.gz
+143M	output/disk.img.gz
 ```
 
 Kubernetes bin:

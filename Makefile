@@ -50,6 +50,13 @@ run: disk.img
 	qemu-system-x86_64 $$kvm -M pc -smp 2 -m 2048 $$net \
 	-drive file=disk.img,if=virtio $$hdb $$hdd -boot c
 
+graph-size.pdf:
+	$(MAKE) -C buildroot graph-size
+	cp buildroot/output/graphs/graph-size.pdf $@
+
+graph-size.png: graph-size.pdf
+	pdftoppm <$< | pnmtopng >$@
+
 KUBEADM = kubeadm
 DOCKER = docker
 

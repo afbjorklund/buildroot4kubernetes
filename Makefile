@@ -71,6 +71,13 @@ images.txt:
 	$(KUBEADM) config images list > $@
 	echo "quay.io/coreos/flannel:v0.12.0-$(GOARCH)" >> $@
 
+images: images.txt
+	xargs -n 1 $(DOCKER) pull < $<
+	for image in $$(cat $<); do \
+	file=$$(echo $$image | sed -e 's/:/_/'); \
+	mkdir -p images/$$(dirname $$file); \
+	$(DOCKER) save $$image | pigz > images/$$file; done
+
 images.txz: images.txt
 	xargs -n 1 $(DOCKER) pull < $<
 	xargs $(DOCKER) save < $< | pixz > $@

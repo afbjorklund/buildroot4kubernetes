@@ -72,6 +72,20 @@ quay.io/coreos/flannel               v0.12.0-amd64       4e9f801d2217        3 m
 
 ![image size](image-size.png)
 
+`docker pull` (gzip):
+
+```
+16M	images/quay.io/coreos/flannel_v0.12.0-amd64
+284K	images/k8s.gcr.io/pause_3.2
+95M	images/k8s.gcr.io/etcd_3.4.3-0
+48M	images/k8s.gcr.io/kube-apiserver_v1.18.5
+47M	images/k8s.gcr.io/kube-proxy_v1.18.5
+46M	images/k8s.gcr.io/kube-controller-manager_v1.18.5
+13M	images/k8s.gcr.io/coredns_1.6.7
+32M	images/k8s.gcr.io/kube-scheduler_v1.18.5
+296M	total
+```
+
 `docker save | xz`:
 
 ```

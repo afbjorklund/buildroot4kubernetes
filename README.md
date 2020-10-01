@@ -30,7 +30,7 @@ User
 Bootable image:
 
 ```
-143M	output/buildroot.iso
+72M	output/buildroot.iso
 ```
 
 Device layout:
@@ -38,7 +38,7 @@ Device layout:
 | QEMU | File          | Media | Device   | Used for          | Size |
 | ---- | ------------- | ----- | -------- | ----------------- | ---- |
 | -hda | disk.img      | disk  | /dev/sda | Persistent `/var` |  20g |
-| -hdc | buildroot.iso | cdrom |          | Buildroot booting | 143m |
+| -hdc | buildroot.iso | cdrom |          | Buildroot booting |  72m |
 
 Reference board:
 

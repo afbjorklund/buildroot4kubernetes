@@ -32,7 +32,7 @@ User
 Bootable image:
 
 ```
-143M	output/disk.img.gz
+143M	output/buildroot.iso
 ```
 
 Kubernetes bin:
@@ -108,7 +108,7 @@ Device layout:
 
 Reference board:
 
-`pc` (bios)
+`qemu/x86_64`
 
 ```
 4.9M	output/images/bzImage

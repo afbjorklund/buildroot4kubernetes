@@ -5,15 +5,12 @@ set -e
 
 BOARD_DIR=$(dirname "$0")
 
-# https://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames/
-
-mkdir -p $TARGET_DIR/etc/systemd/network
-ln -sf /dev/null $TARGET_DIR/etc/systemd/network/99-default.link
-
-# https://www.freedesktop.org/software/systemd/man/systemd-getty-generator.html
-
-mkdir -p $TARGET_DIR/etc/systemd/system/getty.target.wants
-ln -sf /lib/systemd/system/getty@.service $TARGET_DIR/etc/systemd/system/getty.target.wants/getty@tty1.service
+# Add a console on tty1
+if [ -e ${TARGET_DIR}/etc/inittab ]; then
+    grep -qE '^tty1::' ${TARGET_DIR}/etc/inittab || \
+	sed -i '/GENERIC_SERIAL/a\
+tty1::respawn:/sbin/getty -L  tty1 0 vt100 # QEMU graphical window' ${TARGET_DIR}/etc/inittab
+fi
 
 # can't use pivot_root when running on rootfs, only when root is on e.g. tmpfs
 

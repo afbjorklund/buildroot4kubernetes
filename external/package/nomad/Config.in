@@ -1,0 +1,7 @@
+config BR2_PACKAGE_NOMAD
+	bool "nomad"
+	depends on BR2_PACKAGE_HOST_GO_TARGET_ARCH_SUPPORTS
+	help
+	  Nomad - Workload Orchestration
+
+	  https://www.nomadproject.io/

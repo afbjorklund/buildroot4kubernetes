@@ -45,10 +45,10 @@ data.img:
 run: disk.img
 	test -e /dev/kvm && kvm=-enable-kvm; \
 	net="-net nic,model=virtio -net user"; \
-	test -e data.img && hdb="-hdb data.img"; \
-	test -e images.iso && hdd="-hdd images.iso"; \
+	test -e data.img && hdb="-drive file=data.img,if=virtio,index=1,media=disk"; \
+	test -e images.iso && hdd="-drive file=images.iso,if=virtio,index=3,media=cdrom"; \
 	qemu-system-x86_64 $$kvm -M pc -smp 2 -m 2048 $$net \
-	-drive file=disk.img,if=virtio $$hdb $$hdd -boot c
+	-drive file=disk.img,if=virtio,index=0,media=disk $$hdb $$hdd -boot c
 
 graph-size.pdf:
 	$(MAKE) -C buildroot graph-size

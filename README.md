@@ -60,10 +60,10 @@ k8s.gcr.io/coredns:1.7.0
 
 ```
 REPOSITORY                           TAG                 IMAGE ID            CREATED             SIZE
-k8s.gcr.io/kube-proxy                v1.20.1             e3f6fcd87756        8 days ago          118MB
-k8s.gcr.io/kube-apiserver            v1.20.1             75c7f7112080        8 days ago          122MB
-k8s.gcr.io/kube-controller-manager   v1.20.1             2893d78e47dc        8 days ago          116MB
-k8s.gcr.io/kube-scheduler            v1.20.1             4aa0b4397bbb        8 days ago          46.4MB
+k8s.gcr.io/kube-proxy                v1.20.0             10cc881966cf        2 weeks ago         118MB
+k8s.gcr.io/kube-scheduler            v1.20.0             3138b6e3d471        2 weeks ago         46.4MB
+k8s.gcr.io/kube-apiserver            v1.20.0             ca9843d3b545        2 weeks ago         122MB
+k8s.gcr.io/kube-controller-manager   v1.20.0             b9fa1895dcaa        2 weeks ago         116MB
 quay.io/coreos/flannel               v0.13.0             e708f4bb69e3        2 months ago        57.2MB
 k8s.gcr.io/etcd                      3.4.13-0            0369cf4303ff        4 months ago        253MB
 k8s.gcr.io/coredns                   1.7.0               bfe3a36ebd25        6 months ago        45.2MB

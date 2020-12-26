@@ -32,14 +32,14 @@ User
 Bootable image:
 
 ```
-143M	output/disk.img.gz
+137M	output/disk.img.gz
 ```
 
 Kubernetes bin:
 
 ```
 38M     kubeadm
-42M     kubectl
+39M     kubectl
 109M    kubelet
 ```
 
@@ -47,27 +47,27 @@ Required images:
 
 ```console
 $ kubeadm config images list
-k8s.gcr.io/kube-apiserver:v1.18.5
-k8s.gcr.io/kube-controller-manager:v1.18.5
-k8s.gcr.io/kube-scheduler:v1.18.5
-k8s.gcr.io/kube-proxy:v1.18.5
+k8s.gcr.io/kube-apiserver:v1.20.0
+k8s.gcr.io/kube-controller-manager:v1.20.0
+k8s.gcr.io/kube-scheduler:v1.20.0
+k8s.gcr.io/kube-proxy:v1.20.0
 k8s.gcr.io/pause:3.2
-k8s.gcr.io/etcd:3.4.3-0
-k8s.gcr.io/coredns:1.6.7
+k8s.gcr.io/etcd:3.4.13-0
+k8s.gcr.io/coredns:1.7.0
 ```
 
 `docker images`:
 
 ```
 REPOSITORY                           TAG                 IMAGE ID            CREATED             SIZE
-k8s.gcr.io/kube-proxy                v1.18.5             a1daed4e2b60        2 weeks ago         117MB
-k8s.gcr.io/kube-controller-manager   v1.18.5             8d69eaf196dc        2 weeks ago         162MB
-k8s.gcr.io/kube-apiserver            v1.18.5             08ca24f16874        2 weeks ago         173MB
-k8s.gcr.io/kube-scheduler            v1.18.5             39d887c6621d        2 weeks ago         95.3MB
-k8s.gcr.io/pause                     3.2                 80d28bedfe5d        4 months ago        683kB
-k8s.gcr.io/coredns                   1.6.7               67da37a9a360        5 months ago        43.8MB
-k8s.gcr.io/etcd                      3.4.3-0             303ce5db0e90        8 months ago        288MB
-quay.io/coreos/flannel               v0.12.0-amd64       4e9f801d2217        3 months ago        52.8MB
+k8s.gcr.io/kube-proxy                v1.20.1             e3f6fcd87756        8 days ago          118MB
+k8s.gcr.io/kube-apiserver            v1.20.1             75c7f7112080        8 days ago          122MB
+k8s.gcr.io/kube-controller-manager   v1.20.1             2893d78e47dc        8 days ago          116MB
+k8s.gcr.io/kube-scheduler            v1.20.1             4aa0b4397bbb        8 days ago          46.4MB
+quay.io/coreos/flannel               v0.13.0             e708f4bb69e3        2 months ago        57.2MB
+k8s.gcr.io/etcd                      3.4.13-0            0369cf4303ff        4 months ago        253MB
+k8s.gcr.io/coredns                   1.7.0               bfe3a36ebd25        6 months ago        45.2MB
+k8s.gcr.io/pause                     3.2                 80d28bedfe5d        10 months ago       683kB
 ```
 
 ![image size](image-size.png)
@@ -75,21 +75,21 @@ quay.io/coreos/flannel               v0.12.0-amd64       4e9f801d2217        3 m
 `docker pull` (gzip):
 
 ```
-16M	images/quay.io/coreos/flannel_v0.12.0-amd64
+14M	images/k8s.gcr.io/coredns_1.7.0
+82M	images/k8s.gcr.io/etcd_3.4.13-0
+29M	images/k8s.gcr.io/kube-apiserver_v1.20.0
+28M	images/k8s.gcr.io/kube-controller-manager_v1.20.0
+47M	images/k8s.gcr.io/kube-proxy_v1.20.0
+14M	images/k8s.gcr.io/kube-scheduler_v1.20.0
 284K	images/k8s.gcr.io/pause_3.2
-95M	images/k8s.gcr.io/etcd_3.4.3-0
-48M	images/k8s.gcr.io/kube-apiserver_v1.18.5
-47M	images/k8s.gcr.io/kube-proxy_v1.18.5
-46M	images/k8s.gcr.io/kube-controller-manager_v1.18.5
-13M	images/k8s.gcr.io/coredns_1.6.7
-32M	images/k8s.gcr.io/kube-scheduler_v1.18.5
-296M	total
+19M	images/quay.io/coreos/flannel_v0.13.0
+230M	total
 ```
 
 `docker save | xz`:
 
 ```
-167M	images.txz
+161M	images.txz
 ```
 
 ```
@@ -103,8 +103,8 @@ Device layout:
 | ---- | ------------- | ----- | -------- | ----------------- | ---- |
 | -hda | disk.img      | disk  | /dev/sda | Persistent `/var` |  20g |
 | -hdb | data.img      | disk  | /dev/sdb | Persistent `/data`|   5g |
-| -hdc | buildroot.iso | cdrom |          | Buildroot booting | 143m |
-| -hdd | images.iso    | cdrom | /dev/sdc | Kubernetes images | 167m |
+| -hdc | buildroot.iso | cdrom |          | Buildroot booting | 137m |
+| -hdd | images.iso    | cdrom | /dev/sdc | Kubernetes images | 161m |
 
 Reference board:
 

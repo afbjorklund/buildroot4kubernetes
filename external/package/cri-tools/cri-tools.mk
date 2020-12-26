@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-CRI_TOOLS_VERSION = 1.18.0
+CRI_TOOLS_VERSION = 1.19.0
 CRI_TOOLS_SITE = https://github.com/kubernetes-sigs/cri-tools/archive
 CRI_TOOLS_LICENSE = Apache-2.0
 

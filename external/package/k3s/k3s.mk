@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-K3S_VERSION = 1.18.4+k3s1
+K3S_VERSION = 1.20.0+k3s2
 K3S_SITE = https://github.com/rancher/k3s/archive
 K3S_LICENSE = Apache-2.0
 

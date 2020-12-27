@@ -8,5 +8,5 @@ menu "Kubernetes"
     source "$BR2_EXTERNAL_KUBERNETES_PATH/package/k3s/Config.in"
     source "$BR2_EXTERNAL_KUBERNETES_PATH/package/k3c/Config.in"
     source "$BR2_EXTERNAL_KUBERNETES_PATH/package/nomad/Config.in"
-    source "$BR2_EXTERNAL_KUBERNETES_PATH/package/nomad-containerd/Config.in"
+    source "$BR2_EXTERNAL_KUBERNETES_PATH/package/nomad-driver-containerd/Config.in"
 endmenu

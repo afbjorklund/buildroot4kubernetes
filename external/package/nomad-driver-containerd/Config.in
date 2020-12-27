@@ -1,5 +1,5 @@
-config BR2_PACKAGE_NOMAD_CONTAINERD
-	bool "nomad-containerd"
+config BR2_PACKAGE_NOMAD_DRIVER_CONTAINERD
+	bool "nomad-driver-containerd"
 	depends on BR2_PACKAGE_HOST_GO_TARGET_ARCH_SUPPORTS
 	help
 	  Nomad driver for containerd

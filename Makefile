@@ -78,9 +78,15 @@ images: images.txt
 	mkdir -p images/$$(dirname $$file); \
 	$(DOCKER) save $$image | pigz > images/$$file; done
 
-images.txz: images.txt
+images.tar: images.txt
 	xargs -n 1 $(DOCKER) pull < $<
-	xargs $(DOCKER) save < $< | pixz > $@
+	xargs $(DOCKER) save < $< > $@
+
+images.tgz: images.tar
+	pigz < $< > $@
+
+images.txz: images.tar
+	pixz < $< > $@
 
 images.iso: images.txt images.txz
 	genisoimage -output $@ $^

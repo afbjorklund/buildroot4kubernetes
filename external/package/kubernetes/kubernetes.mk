@@ -4,10 +4,8 @@
 #
 ################################################################################
 
-KUBERNETES_VERSION = 1.20.5
-KUBERNETES_SITE = https://github.com/kubernetes/kubernetes/archive
+KUBERNETES_VERSION = 1.21.0
+KUBERNETES_SITE = $(call github,kubernetes,kubernetes,v$(KUBERNETES_VERSION))
 KUBERNETES_LICENSE = Apache-2.0
-
-KUBERNETES_SOURCE = v$(KUBERNETES_VERSION).tar.gz
 
 $(eval $(generic-package))

@@ -38,36 +38,36 @@ Bootable image:
 Kubernetes bin:
 
 ```
-38M     kubeadm
-39M     kubectl
-109M    kubelet
+43M     kubeadm
+45M     kubectl
+113M    kubelet
 ```
 
 Required images:
 
 ```console
 $ kubeadm config images list
-k8s.gcr.io/kube-apiserver:v1.20.0
-k8s.gcr.io/kube-controller-manager:v1.20.0
-k8s.gcr.io/kube-scheduler:v1.20.0
-k8s.gcr.io/kube-proxy:v1.20.0
-k8s.gcr.io/pause:3.2
+k8s.gcr.io/kube-apiserver:v1.21.0
+k8s.gcr.io/kube-controller-manager:v1.21.0
+k8s.gcr.io/kube-scheduler:v1.21.0
+k8s.gcr.io/kube-proxy:v1.21.0
+k8s.gcr.io/pause:3.4.1
 k8s.gcr.io/etcd:3.4.13-0
-k8s.gcr.io/coredns:1.7.0
+k8s.gcr.io/coredns/coredns:v1.8.0
 ```
 
 `docker images`:
 
 ```
-REPOSITORY                           TAG                 IMAGE ID            CREATED             SIZE
-k8s.gcr.io/kube-proxy                v1.20.0             10cc881966cf        2 weeks ago         118MB
-k8s.gcr.io/kube-scheduler            v1.20.0             3138b6e3d471        2 weeks ago         46.4MB
-k8s.gcr.io/kube-apiserver            v1.20.0             ca9843d3b545        2 weeks ago         122MB
-k8s.gcr.io/kube-controller-manager   v1.20.0             b9fa1895dcaa        2 weeks ago         116MB
-quay.io/coreos/flannel               v0.13.0             e708f4bb69e3        2 months ago        57.2MB
-k8s.gcr.io/etcd                      3.4.13-0            0369cf4303ff        4 months ago        253MB
-k8s.gcr.io/coredns                   1.7.0               bfe3a36ebd25        6 months ago        45.2MB
-k8s.gcr.io/pause                     3.2                 80d28bedfe5d        10 months ago       683kB
+REPOSITORY                           TAG                 IMAGE ID       CREATED         SIZE
+k8s.gcr.io/kube-apiserver            v1.21.0             4d217480042e   2 weeks ago     126MB
+k8s.gcr.io/kube-controller-manager   v1.21.0             09708983cc37   2 weeks ago     120MB
+k8s.gcr.io/kube-scheduler            v1.21.0             62ad3129eca8   2 weeks ago     50.6MB
+k8s.gcr.io/kube-proxy                v1.21.0             38ddd85fe90e   2 weeks ago     122MB
+k8s.gcr.io/pause                     3.4.1               0f8457a4c2ec   3 months ago    683kB
+k8s.gcr.io/etcd                      3.4.13-0            0369cf4303ff   8 months ago    253MB
+k8s.gcr.io/coredns/coredns           v1.8.0              296a6d5035e2   6 months ago    42.5MB
+quay.io/coreos/flannel               v0.13.0             e708f4bb69e3   6 months ago    57.2MB
 ```
 
 ![image size](image-size.png)
@@ -75,13 +75,13 @@ k8s.gcr.io/pause                     3.2                 80d28bedfe5d        10 
 `docker pull` (gzip):
 
 ```
-14M	images/k8s.gcr.io/coredns_1.7.0
+29M	images/k8s.gcr.io/kube-apiserver_v1.21.0
+28M	images/k8s.gcr.io/kube-controller-manager_v1.21.0
+14M	images/k8s.gcr.io/kube-scheduler_v1.21.0
+47M	images/k8s.gcr.io/kube-proxy_v1.21.0
+284K	images/k8s.gcr.io/pause_3.4.1
 82M	images/k8s.gcr.io/etcd_3.4.13-0
-29M	images/k8s.gcr.io/kube-apiserver_v1.20.0
-28M	images/k8s.gcr.io/kube-controller-manager_v1.20.0
-47M	images/k8s.gcr.io/kube-proxy_v1.20.0
-14M	images/k8s.gcr.io/kube-scheduler_v1.20.0
-284K	images/k8s.gcr.io/pause_3.2
+13M	images/k8s.gcr.io/coredns/coredns_v1.8.0
 19M	images/quay.io/coreos/flannel_v0.13.0
 230M	total
 ```
@@ -94,7 +94,7 @@ k8s.gcr.io/pause                     3.2                 80d28bedfe5d        10 
 
 ```
 Strms  Blocks   Compressed Uncompressed  Ratio  Check   Filename
-    1      48    166.5 MiB    745.0 MiB  0.224  CRC32   images.txz
+    1      47    160.1 MiB    734.9 MiB  0.218  CRC32   images.txz
 ```
 
 Device layout:

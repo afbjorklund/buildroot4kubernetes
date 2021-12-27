@@ -70,7 +70,7 @@ GOARCH = amd64
 # https://raw.githubusercontent.com/coreos/flannel/v0.13.0/Documentation/kube-flannel.yml
 
 images.txt:
-	echo $$DOCKER
+	echo $(DOCKER)
 	$(KUBEADM) config images list > $@
 	echo "quay.io/coreos/flannel:v0.13.0" >> $@
 

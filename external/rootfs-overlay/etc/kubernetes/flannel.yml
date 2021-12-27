@@ -11,14 +11,14 @@ metadata:
 spec:
   privileged: false
   volumes:
-    - configMap
-    - secret
-    - emptyDir
-    - hostPath
+  - configMap
+  - secret
+  - emptyDir
+  - hostPath
   allowedHostPaths:
-    - pathPrefix: "/etc/cni/net.d"
-    - pathPrefix: "/etc/kube-flannel"
-    - pathPrefix: "/run/flannel"
+  - pathPrefix: "/etc/cni/net.d"
+  - pathPrefix: "/etc/kube-flannel"
+  - pathPrefix: "/run/flannel"
   readOnlyRootFilesystem: false
   # Users and groups
   runAsUser:
@@ -47,36 +47,36 @@ spec:
     rule: 'RunAsAny'
 ---
 kind: ClusterRole
-apiVersion: rbac.authorization.k8s.io/v1beta1
+apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: flannel
 rules:
-  - apiGroups: ['extensions']
-    resources: ['podsecuritypolicies']
-    verbs: ['use']
-    resourceNames: ['psp.flannel.unprivileged']
-  - apiGroups:
-      - ""
-    resources:
-      - pods
-    verbs:
-      - get
-  - apiGroups:
-      - ""
-    resources:
-      - nodes
-    verbs:
-      - list
-      - watch
-  - apiGroups:
-      - ""
-    resources:
-      - nodes/status
-    verbs:
-      - patch
+- apiGroups: ['extensions']
+  resources: ['podsecuritypolicies']
+  verbs: ['use']
+  resourceNames: ['psp.flannel.unprivileged']
+- apiGroups:
+  - ""
+  resources:
+  - pods
+  verbs:
+  - get
+- apiGroups:
+  - ""
+  resources:
+  - nodes
+  verbs:
+  - list
+  - watch
+- apiGroups:
+  - ""
+  resources:
+  - nodes/status
+  verbs:
+  - patch
 ---
 kind: ClusterRoleBinding
-apiVersion: rbac.authorization.k8s.io/v1beta1
+apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: flannel
 roleRef:
@@ -153,15 +153,11 @@ spec:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
-              - matchExpressions:
-                  - key: kubernetes.io/os
-                    operator: In
-                    values:
-                      - linux
-                  - key: kubernetes.io/arch
-                    operator: In
-                    values:
-                      - amd64
+            - matchExpressions:
+              - key: kubernetes.io/os
+                operator: In
+                values:
+                - linux
       hostNetwork: true
       priorityClassName: system-node-critical
       tolerations:
@@ -170,7 +166,7 @@ spec:
       serviceAccountName: flannel
       initContainers:
       - name: install-cni
-        image: quay.io/coreos/flannel:v0.13.0
+        image: quay.io/coreos/flannel:v0.14.0
         command:
         - cp
         args:
@@ -184,7 +180,7 @@ spec:
           mountPath: /etc/kube-flannel/
       containers:
       - name: kube-flannel
-        image: quay.io/coreos/flannel:v0.13.0
+        image: quay.io/coreos/flannel:v0.14.0
         command:
         - /opt/bin/flanneld
         args:
@@ -216,12 +212,12 @@ spec:
         - name: flannel-cfg
           mountPath: /etc/kube-flannel/
       volumes:
-        - name: run
-          hostPath:
-            path: /run/flannel
-        - name: cni
-          hostPath:
-            path: /etc/cni/net.d
-        - name: flannel-cfg
-          configMap:
-            name: kube-flannel-cfg
+      - name: run
+        hostPath:
+          path: /run/flannel
+      - name: cni
+        hostPath:
+          path: /etc/cni/net.d
+      - name: flannel-cfg
+        configMap:
+          name: kube-flannel-cfg

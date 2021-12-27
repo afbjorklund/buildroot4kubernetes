@@ -3,5 +3,6 @@ output/
 disk.img
 data.img
 images.txt
+sizes.txt
 images.txz
 images.iso

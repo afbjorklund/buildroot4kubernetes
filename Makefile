@@ -57,6 +57,9 @@ graph-size.pdf:
 graph-size.png: graph-size.pdf
 	pdftoppm <$< | pnmtopng >$@
 
+# https://storage.googleapis.com/kubernetes-release/release/v1.21.0/bin/linux/amd64/kubeadm
+# make images.txt KUBEADM="./kubeadm --kubernetes-version=v1.21.0"
+
 KUBEADM = kubeadm
 DOCKER = docker
 

@@ -1,0 +1,14 @@
+diff --git a/packaging/systemd/cri-docker.service b/packaging/systemd/cri-docker.service
+index 876fede..8db25cc 100644
+--- a/packaging/systemd/cri-docker.service
++++ b/packaging/systemd/cri-docker.service
+@@ -1,8 +1,7 @@
+ [Unit]
+ Description=CRI Interface for Docker Application Container Engine
+ Documentation=https://docs.mirantis.com
+-BindsTo=containerd.service
+-After=network-online.target firewalld.service containerd.service docker.service
++After=network-online.target firewalld.service docker.service
+ Wants=network-online.target
+ Requires=cri-docker.socket
+ 

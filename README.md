@@ -47,27 +47,26 @@ Required images:
 
 ```console
 $ kubeadm config images list
-k8s.gcr.io/kube-apiserver:v1.21.0
-k8s.gcr.io/kube-controller-manager:v1.21.0
-k8s.gcr.io/kube-scheduler:v1.21.0
-k8s.gcr.io/kube-proxy:v1.21.0
-k8s.gcr.io/pause:3.4.1
-k8s.gcr.io/etcd:3.4.13-0
-k8s.gcr.io/coredns/coredns:v1.8.0
+k8s.gcr.io/kube-apiserver:v1.23.0
+k8s.gcr.io/kube-controller-manager:v1.23.0
+k8s.gcr.io/kube-scheduler:v1.23.0
+k8s.gcr.io/kube-proxy:v1.23.0
+k8s.gcr.io/pause:3.6
+k8s.gcr.io/etcd:3.5.1-0
+k8s.gcr.io/coredns/coredns:v1.8.6
 ```
 
 `docker images`:
 
 ```
-REPOSITORY                           TAG                 IMAGE ID       CREATED         SIZE
-k8s.gcr.io/kube-apiserver            v1.21.0             4d217480042e   2 weeks ago     126MB
-k8s.gcr.io/kube-controller-manager   v1.21.0             09708983cc37   2 weeks ago     120MB
-k8s.gcr.io/kube-scheduler            v1.21.0             62ad3129eca8   2 weeks ago     50.6MB
-k8s.gcr.io/kube-proxy                v1.21.0             38ddd85fe90e   2 weeks ago     122MB
-k8s.gcr.io/pause                     3.4.1               0f8457a4c2ec   3 months ago    683kB
-k8s.gcr.io/etcd                      3.4.13-0            0369cf4303ff   8 months ago    253MB
-k8s.gcr.io/coredns/coredns           v1.8.0              296a6d5035e2   6 months ago    42.5MB
-quay.io/coreos/flannel               v0.13.0             e708f4bb69e3   6 months ago    57.2MB
+REPOSITORY                           TAG        IMAGE ID       CREATED         SIZE
+k8s.gcr.io/kube-apiserver            v1.23.0    e6bf5ddd4098   2 weeks ago     135MB
+k8s.gcr.io/kube-controller-manager   v1.23.0    37c6aeb3663b   2 weeks ago     125MB
+k8s.gcr.io/kube-scheduler            v1.23.0    56c5af1d00b5   2 weeks ago     53.5MB
+k8s.gcr.io/kube-proxy                v1.23.0    e03484a90585   2 weeks ago     112MB
+k8s.gcr.io/pause                     3.6        6270bb605e12   4 months ago    683kB
+k8s.gcr.io/etcd                      3.5.1-0    25f8c7f3da61   7 weeks ago     293MB
+k8s.gcr.io/coredns/coredns           v1.8.6     a4ca41631cc7   2 months ago    46.8MB
 ```
 
 ![image size](image-size.png)
@@ -75,26 +74,26 @@ quay.io/coreos/flannel               v0.13.0             e708f4bb69e3   6 months
 `docker pull` (gzip):
 
 ```
-29M	images/k8s.gcr.io/kube-apiserver_v1.21.0
-28M	images/k8s.gcr.io/kube-controller-manager_v1.21.0
-14M	images/k8s.gcr.io/kube-scheduler_v1.21.0
-47M	images/k8s.gcr.io/kube-proxy_v1.21.0
-284K	images/k8s.gcr.io/pause_3.4.1
-82M	images/k8s.gcr.io/etcd_3.4.13-0
-13M	images/k8s.gcr.io/coredns/coredns_v1.8.0
-19M	images/quay.io/coreos/flannel_v0.13.0
-230M	total
+31M	images/k8s.gcr.io/kube-apiserver_v1.23.0
+29M	images/k8s.gcr.io/kube-controller-manager_v1.23.0
+15M	images/k8s.gcr.io/kube-scheduler_v1.23.0
+37M	images/k8s.gcr.io/kube-proxy_v1.23.0
+284K	images/k8s.gcr.io/pause_3.6
+94M	images/k8s.gcr.io/etcd_3.5.1-0
+13M	images/k8s.gcr.io/coredns/coredns_v1.8.6
+20M	images/quay.io/coreos/flannel_v0.14.0
+237M	total
 ```
 
 `docker save | xz`:
 
 ```
-161M	images.txz
+162M	images.txz
 ```
 
 ```
 Strms  Blocks   Compressed Uncompressed  Ratio  Check   Filename
-    1      47    160.1 MiB    734.9 MiB  0.218  CRC32   images.txz
+    1      51    161,5 MiB    789,9 MiB  0,204  CRC32   images.txz
 ```
 
 Device layout:

@@ -161,3 +161,6 @@ CONFIG_NFSD_V4=y
 
 # automounter
 CONFIG_AUTOFS4_FS=y
+
+# quiet logging
+CONFIG_X86_VERBOSE_BOOTUP=n

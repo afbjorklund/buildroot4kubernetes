@@ -20,6 +20,9 @@ ln -sf /dev/null $TARGET_DIR/etc/systemd/network/99-default.link
 mkdir -p $TARGET_DIR/etc/systemd/system/getty.target.wants
 ln -sf /lib/systemd/system/getty@.service $TARGET_DIR/etc/systemd/system/getty.target.wants/getty@tty1.service
 
+mkdir -p $TARGET_DIR/etc/systemd/system/getty@.service.d
+printf "[Service]\nTTYVTDisallocate=no\n" > $TARGET_DIR/etc/systemd/system/getty@.service.d/noclear.conf
+
 # https://kubernetes.io/docs/setup/production-environment/container-runtimes/#docker
 
 mkdir -p $TARGET_DIR/etc/docker

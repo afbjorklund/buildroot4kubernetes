@@ -4,11 +4,10 @@
 #
 ################################################################################
 
-CNI_PLUGINS_VERSION = 0.8.6
-CNI_PLUGINS_SITE = https://github.com/containernetworking/plugins/archive
+CNI_PLUGINS_VERSION = 0.8.7
+CNI_PLUGINS_SITE = $(call github,containernetworking,plugins,v$(CNI_PLUGINS_VERSION))
 CNI_PLUGINS_LICENSE = Apache-2.0
-
-CNI_PLUGINS_SOURCE = v$(CNI_PLUGINS_VERSION).tar.gz
+CNI_PLUGINS_LICENSE_FILES = LICENSE
 
 CNI_PLUGINS_MAKE_ENV = \
 	$(GO_TARGET_ENV) \
@@ -19,12 +18,15 @@ CNI_PLUGINS_BUILDFLAGS = -ldflags '-extldflags -static -X github.com/containerne
 ifeq ($(BR2_PACKAGE_CNI_PLUGINS_BASIC),y)
 	CNI_PLUGINS_PROGRAMS += bridge loopback ptp
 	CNI_PLUGINS_PROGRAMS += host-local
-	CNI_PLUGINS_PROGRAMS += flannel portmap sbr
+	CNI_PLUGINS_PROGRAMS += portmap sbr
+	CNI_PLUGINS_PROGRAMS += firewall tuning
+	CNI_PLUGINS_PROGRAMS += flannel
 endif
 ifeq ($(BR2_PACKAGE_CNI_PLUGINS_EXTRA),y)
-	CNI_PLUGINS_PROGRAMS += ipvlan macvlan vlan host-device
+	CNI_PLUGINS_PROGRAMS += ipvlan macvlan
+	CNI_PLUGINS_PROGRAMS += vlan host-device
 	CNI_PLUGINS_PROGRAMS += dhcp static
-	CNI_PLUGINS_PROGRAMS += tuning bandwidth firewall
+	CNI_PLUGINS_PROGRAMS += bandwidth
 endif
 
 define CNI_PLUGINS_BUILD_CMDS

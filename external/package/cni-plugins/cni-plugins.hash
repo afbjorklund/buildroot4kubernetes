@@ -1,1 +1,3 @@
-sha256 3a77de1fcd3b818a2062d9208cab3492ad5cf8177f8fb5e86419e81143c86fa5 v0.8.6.tar.gz
+# Computed locally
+sha256 de9fa170b4b6d38f6ff5287b313ddaf3c31f70bccb10e971ad59adadae22dd74  cni-plugins-0.8.7.tar.gz
+sha256 b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1  LICENSE

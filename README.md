@@ -7,9 +7,11 @@ So basically the "bigger brother" of boot2docker... Or a smaller version of mini
 
 Interface            | Implementation | Notes
 ---------            | -------------- | -----
-Container Runtime    | docker         | `cri-dockerd`
+Container Runtime    | docker         | `cri-dockerd`*
 Container Networking | flannel        | VXLAN backend
 Container Storage    | nfs            | ReadWriteMany
+
+\* Needed for Kubernetes 1.24 and later only
 
 Written by Anders Björklund (@afbjorklund)
 

@@ -5,6 +5,12 @@ Build a minimal environment with Buildroot, enough for running kubeadm for Kuber
 
 So basically the "bigger brother" of boot2docker... Or a smaller version of minikube.iso.
 
+Interface            | Implementation
+---------            | --------------
+Container Runtime    | docker
+Container Networking | flannel
+Container Storage    | nfs
+
 Written by Anders Björklund (@afbjorklund)
 
 

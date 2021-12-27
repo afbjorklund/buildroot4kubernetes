@@ -32,7 +32,7 @@ User
 Bootable image:
 
 ```
-137M	output/disk.img.gz
+155M	output/disk.img.gz
 ```
 
 Kubernetes bin:
@@ -104,7 +104,7 @@ Device layout:
 | -hda | disk.img      | disk  | /dev/sda | Persistent `/var` |  20g |
 | -hdb | data.img      | disk  | /dev/sdb | Persistent `/data`|   5g |
 | -hdc | buildroot.iso | cdrom |          | Buildroot booting | 137m |
-| -hdd | images.iso    | cdrom | /dev/sdc | Kubernetes images | 161m |
+| -hdd | images.iso    | cdrom | /dev/sdc | Kubernetes images | 160m |
 
 Reference board:
 

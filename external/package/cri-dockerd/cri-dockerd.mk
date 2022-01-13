@@ -4,9 +4,10 @@
 #
 ################################################################################
 
-# 0.2.0-dev
-CRI_DOCKERD_VERSION = 542e27dee12db61d6e96d2a83a20359474a5efa2
-CRI_DOCKERD_SITE = $(call github,Mirantis,cri-dockerd,$(CRI_DOCKERD_VERSION))
+CRI_DOCKERD_VERSION = 0.2.0
+CRI_DOCKERD_SITE = $(call github,Mirantis,cri-dockerd,v$(CRI_DOCKERD_VERSION))
+CRI_DOCKERD_LICENSE = Apache-2.0
+CRI_DOCKERD_LICENSE_FILES = LICENSE
 
 CRI_DOCKERD_DEPENDENCIES = host-go
 

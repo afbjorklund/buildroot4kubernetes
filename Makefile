@@ -2,17 +2,13 @@
 
 all: zip
 
-BUILDROOT_BRANCH = 2021.02.x
+BUILDROOT_BRANCH = 2021.11.x
 
-# Kubernetes requires go1.17.0 or greater.
-GOLANG_OPTIONS = GO_VERSION=1.17.3 GO_HASH_FILE=$(PWD)/external/go.hash
-
-BUILDROOT_OPTIONS = BR2_EXTERNAL=$(PWD)/external $(GOLANG_OPTIONS)
+BUILDROOT_OPTIONS = BR2_EXTERNAL=$(PWD)/external
 
 buildroot:
 	git clone --single-branch --branch=$(BUILDROOT_BRANCH) \
 	          --no-tags --depth=1 https://github.com/buildroot/buildroot
-	@cp $(PWD)/external/go.hash buildroot/package/go/go.hash
 
 buildroot/.config: buildroot buildroot_defconfig kernel_defconfig
 	cp buildroot_defconfig buildroot/.config

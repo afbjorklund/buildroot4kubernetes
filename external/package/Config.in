@@ -1,6 +1,7 @@
 menu "Kubernetes"
     source "$BR2_EXTERNAL_KUBERNETES_PATH/package/kubernetes/Config.in"
     source "$BR2_EXTERNAL_KUBERNETES_PATH/package/kubernetes-kubeadm/Config.in"
+    source "$BR2_EXTERNAL_KUBERNETES_PATH/package/kubernetes-kubeadm/Config.in.host"
     source "$BR2_EXTERNAL_KUBERNETES_PATH/package/kubernetes-kubelet/Config.in"
     source "$BR2_EXTERNAL_KUBERNETES_PATH/package/kubernetes-kubectl/Config.in"
     source "$BR2_EXTERNAL_KUBERNETES_PATH/package/cri-tools/Config.in"

@@ -60,7 +60,7 @@ graph-size.png: graph-size.pdf
 # https://storage.googleapis.com/kubernetes-release/release/v1.23.0/bin/linux/amd64/kubeadm
 # make images.txt KUBEADM="./kubeadm --kubernetes-version=v1.23.0"
 
-KUBEADM = kubeadm
+KUBEADM = ./buildroot/output/host/bin/kubeadm
 DOCKER = docker
 
 GOOS = linux

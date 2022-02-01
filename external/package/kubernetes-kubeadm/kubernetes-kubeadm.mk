@@ -21,4 +21,14 @@ define KUBERNETES_KUBEADM_INSTALL_TARGET_CMDS
 	$(INSTALL) -D -m 0755 $(@D)/_output/local/bin/linux/$(GO_GOARCH)/kubeadm $(TARGET_DIR)/usr/bin
 endef
 
+define HOST_KUBERNETES_KUBEADM_BUILD_CMDS
+	$(HOST_MAKE_ENV) $(MAKE) -C $(@D) generated_files
+	$(HOST_MAKE_ENV) $(MAKE) -C $(@D) all WHAT="cmd/kubeadm" KUBE_BUILD_PLATFORMS="linux/$(GO_GOARCH)"
+endef
+
+define HOST_KUBERNETES_KUBEADM_INSTALL_CMDS
+	$(INSTALL) -D -m 0755 $(@D)/_output/local/bin/linux/$(GO_GOARCH)/kubeadm $(HOST_DIR)/usr/bin
+endef
+
 $(eval $(generic-package))
+$(eval $(host-generic-package))

@@ -1,0 +1,44 @@
+From 50c048cb54e52cd9058f044671e309e9fbda82e4 Mon Sep 17 00:00:00 2001
+From: Ryan Barry <rbarry@mirantis.com>
+Date: Tue, 4 Jan 2022 19:31:53 -0500
+Subject: [PATCH] Fix a typo in the systemd/upstart scripts for
+ cri-dockerd.sock
+
+Replace cri-docker.sock with cri-dockerd.sock
+---
+ packaging/deb/common/cri-docker.docker.upstart | 4 ++--
+ packaging/systemd/cri-docker.socket            | 2 +-
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/packaging/deb/common/cri-docker.docker.upstart b/packaging/deb/common/cri-docker.docker.upstart
+index 68ce37d..ded228d 100644
+--- a/packaging/deb/common/cri-docker.docker.upstart
++++ b/packaging/deb/common/cri-docker.docker.upstart
+@@ -14,9 +14,9 @@ script
+ 	exec "$CRI_DOCKERD" --container-runtime-endpoint fd:// --networkplugin=""
+ end script
+ 
+-# Don't emit "started" event until cri-docker.sock is ready.
++# Don't emit "started" event until cri-dockerd.sock is ready.
+ post-start script
+-	CRI_DOCKER_SOCKET=/var/run/cri-docker.sock
++	CRI_DOCKER_SOCKET=/var/run/cri-dockerd.sock
+ 
+ 	if [ -n "$CRI_DOCKER_SOCKET" ]; then
+ 		while ! [ -e "$CRI_DOCKER_SOCKET" ]; do
+diff --git a/packaging/systemd/cri-docker.socket b/packaging/systemd/cri-docker.socket
+index 0fc12e1..d240614 100644
+--- a/packaging/systemd/cri-docker.socket
++++ b/packaging/systemd/cri-docker.socket
+@@ -3,7 +3,7 @@ Description=CRI Docker Socket for the API
+ PartOf=cri-docker.service
+ 
+ [Socket]
+-ListenStream=%t/cri-docker.sock
++ListenStream=%t/cri-dockerd.sock
+ SocketMode=0660
+ SocketUser=root
+ SocketGroup=docker
+-- 
+2.25.1
+

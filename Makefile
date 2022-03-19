@@ -4,6 +4,8 @@ all: zip
 
 BUILDROOT_BRANCH = 2021.02.x
 
+KUBERNETES_VERSION = v1.23.5
+
 # Kubernetes requires go1.17.0 or greater.
 GOLANG_OPTIONS = GO_VERSION=1.17.3 GO_HASH_FILE=$(PWD)/external/go.hash
 
@@ -61,8 +63,8 @@ graph-size.pdf:
 graph-size.png: graph-size.pdf
 	pdftoppm <$< | pnmtopng >$@
 
-# https://storage.googleapis.com/kubernetes-release/release/v1.23.0/bin/linux/amd64/kubeadm
-# make images.txt KUBEADM="./kubeadm --kubernetes-version=v1.23.0"
+# https://storage.googleapis.com/kubernetes-release/release/$KUBERNETES_VERSION/bin/linux/amd64/kubeadm
+# make images.txt KUBEADM="./kubeadm --kubernetes-version=$KUBERNETES_VERSION"
 
 KUBEADM = kubeadm
 DOCKER = docker

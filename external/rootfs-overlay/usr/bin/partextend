@@ -1,0 +1,24 @@
+#!/bin/sh -ex
+
+d=$1
+n=$2
+
+# Device     Boot Start     End Sectors  Size Id Type
+# /dev/vda1         264 1331463 1331200  650M 83 Linux
+
+s=$(/sbin/fdisk -l $d | grep Linux | awk '{ print $2 }')
+
+# extend existing partition
+(
+echo d  # delete partition
+echo c  # dos compatibility
+echo n  # create new partition
+echo p  # primary partition
+echo $n # partition 1
+echo $s # First sector
+echo    # Last sector (Accept default)
+echo w  # write changes
+) | /sbin/fdisk $d
+
+# make partition changes visible to the kernel without reboot
+/sbin/partprobe

@@ -106,7 +106,10 @@ PYTHON = python
 FORMAT = '{{.VirtualSize}}'
 
 sizes.txt: images.txt
-	xargs -n 1 $(DOCKER) images --format $(FORMAT) < $< > $@
+	#xargs -n 1 $(DOCKER) images --format $(FORMAT) < $< > $@
+	@rm -f $@; for image in $$(cat $<); do \
+	test "$(DOCKER)" = "docker" && image=$$(echo $$image | sed -e 's|docker.io/||'); \
+	$(DOCKER) images --format $(FORMAT) $$image >> $@; done
 
 image-size.png: images.txt sizes.txt
 	$(PYTHON) image-size.py $^ $@

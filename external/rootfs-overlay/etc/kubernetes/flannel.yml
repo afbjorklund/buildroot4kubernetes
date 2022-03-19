@@ -165,8 +165,19 @@ spec:
         effect: NoSchedule
       serviceAccountName: flannel
       initContainers:
+      - name: install-cni-plugin
+        image: docker.io/flannelcni/flannel-cni-plugin:v1.0.1
+        command:
+        - cp
+        args:
+        - -f
+        - /flannel
+        - /opt/cni/bin/flannel
+        volumeMounts:
+        - name: cni-plugin
+          mountPath: /opt/cni/bin
       - name: install-cni
-        image: quay.io/coreos/flannel:v0.14.0
+        image: docker.io/flannelcni/flannel:v0.17.0
         command:
         - cp
         args:
@@ -180,7 +191,7 @@ spec:
           mountPath: /etc/kube-flannel/
       containers:
       - name: kube-flannel
-        image: quay.io/coreos/flannel:v0.14.0
+        image: docker.io/flannelcni/flannel:v0.17.0
         command:
         - /opt/bin/flanneld
         args:
@@ -211,10 +222,15 @@ spec:
           mountPath: /run/flannel
         - name: flannel-cfg
           mountPath: /etc/kube-flannel/
+        - name: xtables-lock
+          mountPath: /run/xtables.lock
       volumes:
       - name: run
         hostPath:
           path: /run/flannel
+      - name: cni-plugin
+        hostPath:
+          path: /opt/cni/bin
       - name: cni
         hostPath:
           path: /etc/cni/net.d

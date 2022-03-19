@@ -73,12 +73,13 @@ GOOS = linux
 GOARCH = amd64
 
 # /etc/kubernetes/flannel.yml
-# https://raw.githubusercontent.com/coreos/flannel/v0.14.0/Documentation/kube-flannel.yml
+# https://raw.githubusercontent.com/flannel-io/flannel/master/Documentation/kube-flannel.yml
 
 images.txt:
 	echo $(DOCKER)
 	$(KUBEADM) config images list > $@
-	echo "quay.io/coreos/flannel:v0.14.0" >> $@
+	echo "docker.io/flannelcni/flannel:v0.17.0" >> $@
+	echo "docker.io/flannelcni/flannel-cni-plugin:v1.0.1" >> $@
 
 images: images.txt
 	xargs -n 1 $(DOCKER) pull < $<

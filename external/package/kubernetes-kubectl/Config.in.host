@@ -1,0 +1,8 @@
+config BR2_PACKAGE_HOST_KUBERNETES_KUBECTL
+	bool "host kubernetes-kubectl"
+	depends on BR2_PACKAGE_KUBERNETES
+	depends on BR2_PACKAGE_HOST_GO_HOST_ARCH_SUPPORTS
+	help
+	  Production-Grade Container Orchestration
+
+	  https://kubernetes.io/

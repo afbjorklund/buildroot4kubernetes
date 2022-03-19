@@ -1,0 +1,4 @@
+menu "Host utilities"
+    source "$BR2_EXTERNAL_KUBERNETES_PATH/package/kubernetes-kubeadm/Config.in.host"
+    source "$BR2_EXTERNAL_KUBERNETES_PATH/package/kubernetes-kubectl/Config.in.host"
+endmenu

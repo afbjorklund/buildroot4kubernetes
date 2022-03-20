@@ -46,19 +46,19 @@ Bootable image:
 Kubernetes bin:
 
 ```
-43M     kubeadm
-45M     kubectl
-113M    kubelet
+44M	/usr/bin/kubeadm
+45M	/usr/bin/kubectl
+119M	/usr/bin/kubelet
 ```
 
 Required images:
 
 ```console
 $ kubeadm config images list
-k8s.gcr.io/kube-apiserver:v1.23.0
-k8s.gcr.io/kube-controller-manager:v1.23.0
-k8s.gcr.io/kube-scheduler:v1.23.0
-k8s.gcr.io/kube-proxy:v1.23.0
+k8s.gcr.io/kube-apiserver:v1.23.5
+k8s.gcr.io/kube-controller-manager:v1.23.5
+k8s.gcr.io/kube-scheduler:v1.23.5
+k8s.gcr.io/kube-proxy:v1.23.5
 k8s.gcr.io/pause:3.6
 k8s.gcr.io/etcd:3.5.1-0
 k8s.gcr.io/coredns/coredns:v1.8.6
@@ -68,13 +68,15 @@ k8s.gcr.io/coredns/coredns:v1.8.6
 
 ```
 REPOSITORY                           TAG        IMAGE ID       CREATED         SIZE
-k8s.gcr.io/kube-apiserver            v1.23.0    e6bf5ddd4098   2 weeks ago     135MB
-k8s.gcr.io/kube-controller-manager   v1.23.0    37c6aeb3663b   2 weeks ago     125MB
-k8s.gcr.io/kube-scheduler            v1.23.0    56c5af1d00b5   2 weeks ago     53.5MB
-k8s.gcr.io/kube-proxy                v1.23.0    e03484a90585   2 weeks ago     112MB
-k8s.gcr.io/pause                     3.6        6270bb605e12   4 months ago    683kB
-k8s.gcr.io/etcd                      3.5.1-0    25f8c7f3da61   7 weeks ago     293MB
-k8s.gcr.io/coredns/coredns           v1.8.6     a4ca41631cc7   2 months ago    46.8MB
+k8s.gcr.io/kube-apiserver            v1.23.5    3fc1d62d6587   3 days ago      135MB
+k8s.gcr.io/kube-controller-manager   v1.23.5    b0c9e5e4dbb1   3 days ago      125MB
+k8s.gcr.io/kube-scheduler            v1.23.5    884d49d6d8c9   3 days ago      53.5MB
+k8s.gcr.io/kube-proxy                v1.23.5    3c53fa8541f9   3 days ago      112MB
+k8s.gcr.io/pause                     3.6        6270bb605e12   6 months ago    683kB
+k8s.gcr.io/etcd                      3.5.1-0    25f8c7f3da61   4 months ago    293MB
+k8s.gcr.io/coredns/coredns           v1.8.6     a4ca41631cc7   5 months ago    46.8MB
+flannelcni/flannel                   v0.17.0    9247abf08677   2 weeks ago     59.8MB
+flannelcni/flannel-cni-plugin        v1.0.1     ac40ce625740   8 weeks ago     8.1MB
 ```
 
 ![image size](image-size.png)
@@ -82,15 +84,16 @@ k8s.gcr.io/coredns/coredns           v1.8.6     a4ca41631cc7   2 months ago    4
 `docker pull` (gzip):
 
 ```
-31M	images/k8s.gcr.io/kube-apiserver_v1.23.0
-29M	images/k8s.gcr.io/kube-controller-manager_v1.23.0
-15M	images/k8s.gcr.io/kube-scheduler_v1.23.0
-37M	images/k8s.gcr.io/kube-proxy_v1.23.0
-284K	images/k8s.gcr.io/pause_3.6
-94M	images/k8s.gcr.io/etcd_3.5.1-0
+31M	images/k8s.gcr.io/kube-apiserver_v1.23.5
 13M	images/k8s.gcr.io/coredns/coredns_v1.8.6
-20M	images/quay.io/coreos/flannel_v0.14.0
-237M	total
+284K	images/k8s.gcr.io/pause_3.6
+15M	images/k8s.gcr.io/kube-scheduler_v1.23.5
+94M	images/k8s.gcr.io/etcd_3.5.1-0
+29M	images/k8s.gcr.io/kube-controller-manager_v1.23.5
+37M	images/k8s.gcr.io/kube-proxy_v1.23.5
+19M	images/docker.io/flannelcni/flannel_v0.17.0
+3,6M	images/docker.io/flannelcni/flannel-cni-plugin_v1.0.1
+239M	total
 ```
 
 `docker save | xz`:

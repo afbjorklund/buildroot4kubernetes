@@ -1,0 +1,39 @@
+From 1348d9aa60eb22bacae53714a98647d581900694 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Anders=20F=20Bj=C3=B6rklund?= <anders.f.bjorklund@gmail.com>
+Date: Sat, 9 Apr 2022 13:58:10 +0200
+Subject: [PATCH] Bump the sandbox image version to 3.6
+
+---
+ src/cmd/cri/options/options.go | 2 +-
+ src/core/sandbox_helpers.go    | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/cmd/cri/options/options.go b/src/cmd/cri/options/options.go
+index d02641d..268b905 100644
+--- a/src/cmd/cri/options/options.go
++++ b/src/cmd/cri/options/options.go
+@@ -91,7 +91,7 @@ func (f *DockerCRIFlags) AddFlags(mainfs *pflag.FlagSet) {
+ 
+ const (
+ 	defaultPodSandboxImageName    = "k8s.gcr.io/pause"
+-	defaultPodSandboxImageVersion = "3.1"
++	defaultPodSandboxImageVersion = "3.6"
+ )
+ 
+ var (
+diff --git a/src/core/sandbox_helpers.go b/src/core/sandbox_helpers.go
+index 12da94d..80bd3f1 100644
+--- a/src/core/sandbox_helpers.go
++++ b/src/core/sandbox_helpers.go
+@@ -34,7 +34,7 @@ import (
+ )
+ 
+ const (
+-	defaultSandboxImage = "k8s.gcr.io/pause:3.4.1"
++	defaultSandboxImage = "k8s.gcr.io/pause:3.6"
+ 
+ 	// Various default sandbox resources requests/limits.
+ 	defaultSandboxCPUshares int64 = 2
+-- 
+2.25.1
+

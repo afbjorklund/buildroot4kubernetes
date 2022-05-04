@@ -1,3 +1,3 @@
 # Locally calculated
-sha256 3ffcab90374e1bef19a4da7eeda3333eba816cee98dca3899d1b0120c98dba38  kubernetes-1.23.5.tar.gz
+sha256 33cafd0a8bb5af15c018e9478900538d9f1bdab36210556288ee26d91763ce05  kubernetes-1.24.0.tar.gz
 sha256 cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30  LICENSE

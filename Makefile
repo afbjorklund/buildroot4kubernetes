@@ -79,7 +79,6 @@ images.txt:
 	echo $(DOCKER)
 	$(KUBEADM) config images list > $@
 	echo "docker.io/flannelcni/flannel:v0.17.0" >> $@
-	echo "docker.io/flannelcni/flannel-cni-plugin:v1.0.1" >> $@
 
 images: images.txt
 	xargs -n 1 $(DOCKER) pull < $<

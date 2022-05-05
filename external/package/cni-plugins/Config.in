@@ -9,6 +9,7 @@ if BR2_PACKAGE_CNI_PLUGINS
 config BR2_PACKAGE_CNI_PLUGINS_BASIC
 	bool "basic plugins"
         default y
+	select BR2_PACKAGE_CNI_PLUGIN_FLANNEL
 	help
 	  Install basic plugins
 

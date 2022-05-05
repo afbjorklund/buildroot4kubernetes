@@ -1,0 +1,5 @@
+config BR2_PACKAGE_CNI_PLUGIN_FLANNEL
+	bool "cni-plugin-flannel"
+	depends on BR2_PACKAGE_HOST_GO_TARGET_ARCH_SUPPORTS
+	help
+	  Flannel CNI network plugin.

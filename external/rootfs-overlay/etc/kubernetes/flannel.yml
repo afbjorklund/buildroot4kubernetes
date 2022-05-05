@@ -165,17 +165,6 @@ spec:
         effect: NoSchedule
       serviceAccountName: flannel
       initContainers:
-      - name: install-cni-plugin
-        image: docker.io/flannelcni/flannel-cni-plugin:v1.0.1
-        command:
-        - cp
-        args:
-        - -f
-        - /flannel
-        - /opt/cni/bin/flannel
-        volumeMounts:
-        - name: cni-plugin
-          mountPath: /opt/cni/bin
       - name: install-cni
         image: docker.io/flannelcni/flannel:v0.17.0
         command:
@@ -228,9 +217,6 @@ spec:
       - name: run
         hostPath:
           path: /run/flannel
-      - name: cni-plugin
-        hostPath:
-          path: /opt/cni/bin
       - name: cni
         hostPath:
           path: /etc/cni/net.d

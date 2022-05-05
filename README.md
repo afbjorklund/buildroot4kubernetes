@@ -76,7 +76,6 @@ k8s.gcr.io/pause                     3.7        221177c6082a   7 weeks ago     7
 k8s.gcr.io/etcd                      3.5.3-0    aebe758cef4c   2 weeks ago     299MB
 k8s.gcr.io/coredns/coredns           v1.8.6     a4ca41631cc7   6 months ago    46.8MB
 flannelcni/flannel                   v0.17.0    9247abf08677   2 months ago    59.8MB
-flannelcni/flannel-cni-plugin        v1.0.1     ac40ce625740   3 months ago    8.1MB
 ```
 
 ![image size](image-size.png)
@@ -92,8 +91,7 @@ flannelcni/flannel-cni-plugin        v1.0.1     ac40ce625740   3 months ago    8
 97M	images/k8s.gcr.io/etcd_3.5.3-0
 13M	images/k8s.gcr.io/coredns/coredns_v1.8.6
 19M	images/docker.io/flannelcni/flannel_v0.17.0
-3.6M	images/docker.io/flannelcni/flannel-cni-plugin_v1.0.1
-244M	total
+240M	total
 ```
 
 `docker save | xz`:

@@ -16,7 +16,7 @@ buildroot:
 	          --no-tags --depth=1 https://github.com/buildroot/buildroot
 	@cp $(PWD)/external/go.hash buildroot/package/go/go.hash
 
-BUILDROOT_MACHINE = x86_64
+BUILDROOT_MACHINE = $(shell uname -m | sed -e 's/arm64/aarch64/')
 
 BUILDROOT_TARGET = kubernetes_$(BUILDROOT_MACHINE)_defconfig
 

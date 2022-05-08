@@ -4,7 +4,7 @@ set -e
 
 BOARD_DIR="$(dirname $0)"
 BOARD_NAME="$(basename ${BOARD_DIR})"
-GENIMAGE_CFG="${BOARD_DIR}/genimage-${BOARD_NAME}.cfg"
+GENIMAGE_CFG="${BOARD_DIR}/genimage-raspberrypi3-64.cfg"
 GENIMAGE_TMP="${BUILD_DIR}/genimage.tmp"
 
 # Pass an empty rootpath. genimage makes a full copy of the given rootpath to

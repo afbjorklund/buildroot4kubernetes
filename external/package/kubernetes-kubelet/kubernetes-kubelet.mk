@@ -19,6 +19,15 @@ KUBERNETES_KUBELET_MAKE_ENV = \
 	$(HOST_GO_COMMON_ENV) \
 	GOCACHE="$(HOST_GO_TARGET_CACHE)"
 
+# Extra "gnu" (or missing vendor) in triplet
+# But only set variable when cross-compiling
+ifeq ($(BR2_x86_64),y)
+	KUBERNETES_KUBELET_MAKE_ENV += KUBE_LINUX_AMD64_CC=x86_64-buildroot-linux-gnu-gcc
+endif
+ifeq ($(BR2_aarch64),y)
+	KUBERNETES_KUBELET_MAKE_ENV += KUBE_LINUX_ARM64_CC=aarch64-buildroot-linux-gnu-gcc
+endif
+
 define KUBERNETES_KUBELET_BUILD_CMDS
 	$(TARGET_MAKE_ENV) $(KUBERNETES_KUBELET_MAKE_ENV) $(MAKE1) -C $(@D) generated_files
 	$(TARGET_MAKE_ENV) $(KUBERNETES_KUBELET_MAKE_ENV) $(MAKE1) -C $(@D) all WHAT="cmd/kubelet" KUBE_BUILD_PLATFORMS="linux/$(GO_GOARCH)"

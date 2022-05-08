@@ -16,9 +16,12 @@ buildroot:
 	          --no-tags --depth=1 https://github.com/buildroot/buildroot
 	@cp $(PWD)/external/go.hash buildroot/package/go/go.hash
 
-buildroot/.config: buildroot buildroot_defconfig kernel_defconfig
-	cp buildroot_defconfig buildroot/.config
-	$(MAKE) -C buildroot $(BUILDROOT_OPTIONS) olddefconfig
+BUILDROOT_MACHINE = x86_64
+
+BUILDROOT_TARGET = kubernetes_$(BUILDROOT_MACHINE)_defconfig
+
+buildroot/.config: buildroot $(BUILDROOT_CONFIG)
+	$(MAKE) -C buildroot $(BUILDROOT_OPTIONS) $(BUILDROOT_TARGET)
 
 # buildroot/dl
 download: buildroot/.config

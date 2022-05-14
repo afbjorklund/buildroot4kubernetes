@@ -20,7 +20,6 @@ KUBERNETES_KUBELET_MAKE_ENV = \
 	GOCACHE="$(HOST_GO_TARGET_CACHE)"
 
 # Extra "gnu" (or missing vendor) in triplet
-# But only set variable when cross-compiling
 ifeq ($(BR2_x86_64),y)
 	KUBERNETES_KUBELET_MAKE_ENV += KUBE_LINUX_AMD64_CC=x86_64-buildroot-linux-gnu-gcc
 endif

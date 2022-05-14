@@ -35,13 +35,17 @@ define KUBERNETES_KUBECTL_INSTALL_TARGET_CMDS
 	$(INSTALL) -D -m 0755 $(@D)/_output/local/bin/linux/$(GO_GOARCH)/kubectl $(TARGET_DIR)/usr/bin
 endef
 
+HOST_KUBERNETES_KUBECTL_MAKE_ENV = \
+	$(HOST_GO_COMMON_ENV) \
+	GOCACHE="$(HOST_GO_HOST_CACHE)"
+
 define HOST_KUBERNETES_KUBECTL_BUILD_CMDS
-	$(HOST_MAKE_ENV) $(KUBERNETES_KUBECTL_MAKE_ENV) $(MAKE1) -C $(@D) generated_files CC="$(HOSTCC)"
-	$(HOST_MAKE_ENV) $(KUBERNETES_KUBECTL_MAKE_ENV) $(MAKE1) -C $(@D) all WHAT="cmd/kubectl" KUBE_BUILD_PLATFORMS="$$(go env GOOS)/$(GO_GOARCH)" KUBE_CGO_OVERRIDES=kubectl
+	$(HOST_MAKE_ENV) $(HOST_KUBERNETES_KUBECTL_MAKE_ENV) $(MAKE1) -C $(@D) generated_files CC="$(HOSTCC)"
+	$(HOST_MAKE_ENV) $(HOST_KUBERNETES_KUBECTL_MAKE_ENV) $(MAKE1) -C $(@D) all WHAT="cmd/kubectl" KUBE_BUILD_PLATFORMS="$$(go env GOOS)/$(go env GOARCH)" KUBE_CGO_OVERRIDES=kubectl
 endef
 
 define HOST_KUBERNETES_KUBECTL_INSTALL_CMDS
-	$(INSTALL) -D -m 0755 $(@D)/_output/local/bin/$$(go env GOOS)/$(GO_GOARCH)/kubectl $(HOST_DIR)/bin
+	$(INSTALL) -D -m 0755 $(@D)/_output/local/bin/$$(go env GOOS)/$(go env GOARCH)/kubectl $(HOST_DIR)/bin
 endef
 
 $(eval $(generic-package))

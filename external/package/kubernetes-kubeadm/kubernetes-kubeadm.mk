@@ -35,13 +35,17 @@ define KUBERNETES_KUBEADM_INSTALL_TARGET_CMDS
 	$(INSTALL) -D -m 0755 $(@D)/_output/local/bin/linux/$(GO_GOARCH)/kubeadm $(TARGET_DIR)/usr/bin
 endef
 
+HOST_KUBERNETES_KUBEADM_MAKE_ENV = \
+	$(HOST_GO_COMMON_ENV) \
+	GOCACHE="$(HOST_GO_HOST_CACHE)"
+
 define HOST_KUBERNETES_KUBEADM_BUILD_CMDS
-	$(HOST_MAKE_ENV) $(KUBERNETES_KUBEADM_MAKE_ENV) $(MAKE1) -C $(@D) generated_files CC="$(HOSTCC)"
-	$(HOST_MAKE_ENV) $(KUBERNETES_KUBEADM_MAKE_ENV) $(MAKE1) -C $(@D) all WHAT="cmd/kubeadm" KUBE_BUILD_PLATFORMS="$$(go env GOOS)/$(GO_GOARCH)" KUBE_CGO_OVERRIDES=kubeadm
+	$(HOST_MAKE_ENV) $(HOST_KUBERNETES_KUBEADM_MAKE_ENV) $(MAKE1) -C $(@D) generated_files CC="$(HOSTCC)"
+	$(HOST_MAKE_ENV) $(HOST_KUBERNETES_KUBEADM_MAKE_ENV) $(MAKE1) -C $(@D) all WHAT="cmd/kubeadm" KUBE_BUILD_PLATFORMS="$$(go env GOOS)/$$(go env GOARCH)" KUBE_CGO_OVERRIDES=kubeadm
 endef
 
 define HOST_KUBERNETES_KUBEADM_INSTALL_CMDS
-	$(INSTALL) -D -m 0755 $(@D)/_output/local/bin/$$(go env GOOS)/$(GO_GOARCH)/kubeadm $(HOST_DIR)/bin
+	$(INSTALL) -D -m 0755 $(@D)/_output/local/bin/$$(go env GOOS)/$$(go env GOARCH)/kubeadm $(HOST_DIR)/bin
 endef
 
 $(eval $(generic-package))

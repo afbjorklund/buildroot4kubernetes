@@ -29,7 +29,7 @@ ifeq ($(BR2_aarch64),y)
 endif
 
 define KUBERNETES_KUBELET_BUILD_CMDS
-	$(TARGET_MAKE_ENV) $(KUBERNETES_KUBELET_MAKE_ENV) $(MAKE1) -C $(@D) generated_files
+	$(TARGET_MAKE_ENV) $(KUBERNETES_KUBELET_MAKE_ENV) $(MAKE1) -C $(@D) generated_files CC="$(HOSTCC)"
 	$(TARGET_MAKE_ENV) $(KUBERNETES_KUBELET_MAKE_ENV) $(MAKE1) -C $(@D) all WHAT="cmd/kubelet" KUBE_BUILD_PLATFORMS="linux/$(GO_GOARCH)"
 endef
 

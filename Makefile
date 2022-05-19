@@ -32,17 +32,29 @@ clean:
 	rm -f buildroot/.config
 	$(MAKE) -C buildroot $(BUILDROOT_OPTIONS) clean
 
+ifeq ($(BUILDROOT_TARGET),x86_64)
 img: output/disk.img
 zip: output/disk.img.gz
+endif
+ifeq ($(BUILDROOT_TARGET),aarch64)
+img: output/sdcard.img
+zip: output/sdcard.img.zip
+endif
 
 # buildroot/output
 output/disk.img: buildroot/.config
 	$(MAKE) -C buildroot $(BUILDROOT_OPTIONS) all
 	@mkdir -p output
 	cp buildroot/output/images/disk.img output/disk.img
+output/sdcard.img: buildroot/.config
+	$(MAKE) -C buildroot $(BUILDROOT_OPTIONS) all
+	@mkdir -p output
+	cp buildroot/output/images/sdcard.img output/sdcard.img
 
 output/disk.img.gz: output/disk.img
 	cd output && gzip -9 >disk.img.gz <disk.img
+output/sdcard.img.zip: output/sdcard.img
+	cd output && zip sdcard.img.zip sdcard.img
 
 disk.img:
 	qemu-img convert -f raw -O qcow2 output/disk.img $@
@@ -72,8 +84,14 @@ graph-size.png: graph-size.pdf
 KUBEADM = kubeadm
 DOCKER = docker
 
+ifeq ($(BUILDROOT_TARGET),x86_64)
 GOOS = linux
 GOARCH = amd64
+endif
+ifeq ($(BUILDROOT_TARGET),aarch64)
+GOOS = linux
+GOARCH = arm64
+endif
 
 # /etc/kubernetes/flannel.yml
 # https://raw.githubusercontent.com/flannel-io/flannel/master/Documentation/kube-flannel.yml
@@ -84,15 +102,21 @@ images.txt:
 	echo "docker.io/flannelcni/flannel:v0.17.0" >> $@
 
 images: images.txt
-	xargs -n 1 $(DOCKER) pull < $<
+	xargs -n 1 $(DOCKER) pull --platform=$(GOOS)/$(GOARCH) < $<
 	for image in $$(cat $<); do \
 	file=$$(echo $$image | sed -e 's/:/_/'); \
 	mkdir -p images/$$(dirname $$file); \
 	$(DOCKER) save $$image | pigz > images/$$file; done
 
 images.tar: images.txt
-	xargs -n 1 $(DOCKER) pull < $<
+	xargs -n 1 $(DOCKER) pull --platform=$(GOOS)/$(GOARCH) < $<
 	xargs $(DOCKER) save < $< > $@
+
+images.tar.gz: images.tar
+	gzip -9 < $< > $@
+
+images.tar.xz: images.tar
+	xz < $< > $@
 
 images.tgz: images.tar
 	pigz < $< > $@
@@ -120,9 +144,17 @@ image-size.pdf: images.txt sizes.txt
 	$(PYTHON) image-size.py $^ $@
 
 # reference board
+ifeq ($(BUILDROOT_TARGET),x86_64)
 pc_x86_64_bios: buildroot
 	$(MAKE) -C buildroot pc_x86_64_bios_defconfig
 	$(MAKE) -C buildroot world
 	@mkdir -p output/images
 	cp buildroot/output/images/bzImage output/images/
 	cp buildroot/output/images/rootfs.ext2 output/images/
+endif
+ifeq ($(BUILDROOT_TARGET),aarch64)
+raspberrypi3_64: buildroot
+	$(MAKE) -C buildroot raspberrypi3_64_defconfig
+	cp buildroot/output/images/boot.vfat output/images/
+	cp buildroot/output/images/rootfs.ext4 output/images/
+endif

@@ -5,6 +5,9 @@ set -e
 
 BOARD_DIR=$(dirname "$0")
 
+# Expand /dev/mmcblk0p2
+printf "ROOT_DISK=/dev/mmcblk0\nROOT_PARTPREFIX=p\nROOT_PARTITION=2\n" > $TARGET_DIR/etc/disk-expand-root
+
 # https://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames/
 
 mkdir -p $TARGET_DIR/etc/systemd/network

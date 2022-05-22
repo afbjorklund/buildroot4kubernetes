@@ -15,6 +15,9 @@ else
     cp -f "$TARGET_DIR/lib/grub/i386-pc/boot.img" "$BINARIES_DIR"
 fi
 
+# Expand /dev/vda1
+printf "ROOT_DISK=/dev/vda\nROOT_PARTPREFIX=\nROOT_PARTITION=1\n" > $TARGET_DIR/etc/disk-expand-root
+
 # https://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames/
 
 mkdir -p $TARGET_DIR/etc/systemd/network

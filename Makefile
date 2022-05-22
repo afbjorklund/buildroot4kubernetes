@@ -32,11 +32,11 @@ clean:
 	rm -f buildroot/.config
 	$(MAKE) -C buildroot $(BUILDROOT_OPTIONS) clean
 
-ifeq ($(BUILDROOT_TARGET),x86_64)
+ifeq ($(BUILDROOT_MACHINE),x86_64)
 img: output/disk.img
 zip: output/disk.img.gz
 endif
-ifeq ($(BUILDROOT_TARGET),aarch64)
+ifeq ($(BUILDROOT_MACHINE),aarch64)
 img: output/sdcard.img
 zip: output/sdcard.img.zip
 endif
@@ -84,11 +84,11 @@ graph-size.png: graph-size.pdf
 KUBEADM = kubeadm
 DOCKER = docker
 
-ifeq ($(BUILDROOT_TARGET),x86_64)
+ifeq ($(BUILDROOT_MACHINE),x86_64)
 GOOS = linux
 GOARCH = amd64
 endif
-ifeq ($(BUILDROOT_TARGET),aarch64)
+ifeq ($(BUILDROOT_MACHINE),aarch64)
 GOOS = linux
 GOARCH = arm64
 endif
@@ -144,7 +144,7 @@ image-size.pdf: images.txt sizes.txt
 	$(PYTHON) image-size.py $^ $@
 
 # reference board
-ifeq ($(BUILDROOT_TARGET),x86_64)
+ifeq ($(BUILDROOT_MACHINE),x86_64)
 pc_x86_64_bios: buildroot
 	$(MAKE) -C buildroot pc_x86_64_bios_defconfig
 	$(MAKE) -C buildroot world
@@ -152,7 +152,7 @@ pc_x86_64_bios: buildroot
 	cp buildroot/output/images/bzImage output/images/
 	cp buildroot/output/images/rootfs.ext2 output/images/
 endif
-ifeq ($(BUILDROOT_TARGET),aarch64)
+ifeq ($(BUILDROOT_MACHINE),aarch64)
 raspberrypi3_64: buildroot
 	$(MAKE) -C buildroot raspberrypi3_64_defconfig
 	cp buildroot/output/images/boot.vfat output/images/

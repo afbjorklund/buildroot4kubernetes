@@ -41,15 +41,17 @@ img: output/sdcard.img
 zip: output/sdcard.img.zip
 endif
 
+O ?= output
+
 # buildroot/output
 output/disk.img: buildroot/.config
 	$(MAKE) -C buildroot $(BUILDROOT_OPTIONS) all
 	@mkdir -p output
-	cp buildroot/output/images/disk.img output/disk.img
+	cp buildroot/$(O)/images/disk.img output/disk.img
 output/sdcard.img: buildroot/.config
 	$(MAKE) -C buildroot $(BUILDROOT_OPTIONS) all
 	@mkdir -p output
-	cp buildroot/output/images/sdcard.img output/sdcard.img
+	cp buildroot/$(O)/images/sdcard.img output/sdcard.img
 
 output/disk.img.gz: output/disk.img
 	cd output && gzip -9 >disk.img.gz <disk.img
@@ -73,7 +75,7 @@ run: disk.img
 
 graph-size.pdf:
 	$(MAKE) -C buildroot graph-size
-	cp buildroot/output/graphs/graph-size.pdf $@
+	cp buildroot/$(O)/graphs/graph-size.pdf $@
 
 graph-size.png: graph-size.pdf
 	pdftoppm <$< | pnmtopng >$@
@@ -149,12 +151,12 @@ pc_x86_64_bios: buildroot
 	$(MAKE) -C buildroot pc_x86_64_bios_defconfig
 	$(MAKE) -C buildroot world
 	@mkdir -p output/images
-	cp buildroot/output/images/bzImage output/images/
-	cp buildroot/output/images/rootfs.ext2 output/images/
+	cp buildroot/$(O)/images/bzImage output/images/
+	cp buildroot/$(O)/images/rootfs.ext2 output/images/
 endif
 ifeq ($(BUILDROOT_MACHINE),aarch64)
 raspberrypi3_64: buildroot
 	$(MAKE) -C buildroot raspberrypi3_64_defconfig
-	cp buildroot/output/images/boot.vfat output/images/
-	cp buildroot/output/images/rootfs.ext4 output/images/
+	cp buildroot/$(O)/images/boot.vfat output/images/
+	cp buildroot/$(O)/images/rootfs.ext4 output/images/
 endif

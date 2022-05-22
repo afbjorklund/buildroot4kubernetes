@@ -31,9 +31,4 @@ ln -sf /lib/systemd/system/getty@.service $TARGET_DIR/etc/systemd/system/getty.t
 mkdir -p $TARGET_DIR/etc/systemd/system/getty@.service.d
 printf "[Service]\nTTYVTDisallocate=no\n" > $TARGET_DIR/etc/systemd/system/getty@.service.d/noclear.conf
 
-# https://kubernetes.io/docs/setup/production-environment/container-runtimes/#docker
-
-mkdir -p $TARGET_DIR/etc/docker
-cp $BOARD_DIR/daemon.json $TARGET_DIR/etc/docker
-
 mkdir -p $TARGET_DIR/etc/systemd/system/docker.service.d

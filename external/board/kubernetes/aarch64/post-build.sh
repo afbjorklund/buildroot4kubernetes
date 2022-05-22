@@ -5,6 +5,8 @@ set -e
 
 BOARD_DIR=$(dirname "$0")
 
+cp -f "$BOARD_DIR/grub.cfg" "$BINARIES_DIR/efi-part/EFI/BOOT/grub.cfg"
+
 # Expand /dev/mmcblk0p2
 printf "ROOT_DISK=/dev/mmcblk0\nROOT_PARTPREFIX=p\nROOT_PARTITION=2\n" > $TARGET_DIR/etc/disk-expand-root
 

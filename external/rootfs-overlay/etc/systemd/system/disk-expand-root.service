@@ -6,7 +6,7 @@ Wants=local-fs.target
 [Service]
 EnvironmentFile=/etc/disk-expand-root
 ExecStart=/bin/sh -c "/usr/bin/partextend \${ROOT_DISK} \${ROOT_PARTITION} || exit 0"
-ExecStop=/bin/sh -c "/sbin/resize2fs \${ROOT_DISK}\${ROOT_PARTPREFIX}\${ROOT_PARTITION} || exit 0"
+ExecStop=/bin/sh -c "/sbin/resize2fs \${ROOT_DISK}\${ROOT_PARTPREFIX}${ROOT_PARTITION} || exit 0"
 Type=oneshot
 
 [Install]

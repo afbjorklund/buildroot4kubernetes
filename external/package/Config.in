@@ -9,6 +9,7 @@ menu "Kubernetes"
     source "$BR2_EXTERNAL_KUBERNETES_PATH/package/cni-plugin-flannel/Config.in"
     source "$BR2_EXTERNAL_KUBERNETES_PATH/package/k3s/Config.in"
     source "$BR2_EXTERNAL_KUBERNETES_PATH/package/k3c/Config.in"
+    source "$BR2_EXTERNAL_KUBERNETES_PATH/package/kine/Config.in"
 endmenu
 
 source "$BR2_EXTERNAL_KUBERNETES_PATH/package/Config.in.host"

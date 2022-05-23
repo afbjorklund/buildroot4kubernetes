@@ -1,0 +1,5 @@
+config BR2_PACKAGE_KINE
+	bool "kine"
+	depends on BR2_PACKAGE_HOST_GO_TARGET_ARCH_SUPPORTS
+	help
+	  Kine (Kine is not etcd) is an etcdshim that translates etcd API to sql

@@ -39,8 +39,16 @@ User
 
 Bootable image:
 
+x86_64
 ```
 176M	output/disk.img.gz
+```
+
+Flashable image:
+
+aarch64
+```
+174M	output/sdcard.img.zip
 ```
 
 Kubernetes bin:
@@ -66,6 +74,7 @@ k8s.gcr.io/coredns/coredns:v1.8.6
 
 `docker images`:
 
+linux/amd64
 ```
 REPOSITORY                           TAG        IMAGE ID       CREATED         SIZE
 k8s.gcr.io/kube-apiserver            v1.24.0    529072250ccc   29 hours ago    130MB
@@ -77,6 +86,20 @@ k8s.gcr.io/etcd                      3.5.3-0    aebe758cef4c   2 weeks ago     2
 k8s.gcr.io/coredns/coredns           v1.8.6     a4ca41631cc7   6 months ago    46.8MB
 k8s.gcr.io/pause                     3.6        6270bb605e12   9 months ago    683kB
 flannelcni/flannel                   v0.17.0    9247abf08677   2 months ago    59.8MB
+```
+
+linux/arm64
+```
+REPOSITORY                           TAG        IMAGE ID       CREATED         SIZE
+k8s.gcr.io/kube-apiserver            v1.24.0    b62a103951f4   2 weeks ago     126MB
+k8s.gcr.io/kube-proxy                v1.24.0    66e1443684b0   2 weeks ago     106MB
+k8s.gcr.io/kube-scheduler            v1.24.0    b81513b3bfb4   2 weeks ago     50MB
+k8s.gcr.io/kube-controller-manager   v1.24.0    59fad34d4fe0   2 weeks ago     116MB
+k8s.gcr.io/pause                     3.7        e5a475a03805   2 months ago    514kB
+k8s.gcr.io/etcd                      3.5.3-0    a9a710bb96df   5 weeks ago     178MB
+k8s.gcr.io/coredns/coredns           v1.8.6     edaa71f2aee8   7 months ago    46.8MB
+k8s.gcr.io/pause                     3.6        7d46a07936af   9 months ago    484kB
+flannelcni/flannel                   v0.17.0    a8fbfb17608d   2 months ago    61.8MB
 ```
 
 ![image size](image-size.png)
@@ -122,4 +145,11 @@ Reference board:
 ```
 4.9M	output/images/bzImage
 84M	output/images/rootfs.ext2
+```
+
+`raspberrypi3-64`
+
+```
+18M    output/images/boot.vfat
+75M    output/images/rootfs.ext4
 ```

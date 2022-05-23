@@ -75,6 +75,7 @@ k8s.gcr.io/kube-controller-manager   v1.24.0    88784fb4ac2f   29 hours ago    1
 k8s.gcr.io/pause                     3.7        221177c6082a   7 weeks ago     711kB
 k8s.gcr.io/etcd                      3.5.3-0    aebe758cef4c   2 weeks ago     299MB
 k8s.gcr.io/coredns/coredns           v1.8.6     a4ca41631cc7   6 months ago    46.8MB
+k8s.gcr.io/pause                     3.6        6270bb605e12   9 months ago    683kB
 flannelcni/flannel                   v0.17.0    9247abf08677   2 months ago    59.8MB
 ```
 

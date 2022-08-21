@@ -1,0 +1,27 @@
+From ac1a8b9fc47bec3229fff1059958a17de04bc4eb Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Anders=20F=20Bj=C3=B6rklund?= <anders.f.bjorklund@gmail.com>
+Date: Mon, 27 Jun 2022 18:58:21 +0200
+Subject: [PATCH] Remove error logging output from ContainerStats
+
+Accidentally included in f00eefee421e532a9bf7b8c348ad37fc0be48211
+
+It should probably at least have used "Debug", and not "Error"...
+---
+ libdocker/kube_docker_client.go | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/libdocker/kube_docker_client.go b/libdocker/kube_docker_client.go
+index 55b5c4f..1da13e7 100644
+--- a/libdocker/kube_docker_client.go
++++ b/libdocker/kube_docker_client.go
+@@ -610,7 +610,6 @@ func (d *kubeDockerClient) GetContainerStats(id string) (*dockertypes.StatsJSON,
+ 	defer cancel()
+ 
+ 	response, err := d.client.ContainerStats(ctx, id, false)
+-	logrus.Error("ContainerStats resp: ", response)
+ 	if err != nil {
+ 		return nil, err
+ 	}
+-- 
+2.25.1
+

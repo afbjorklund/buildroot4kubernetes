@@ -101,7 +101,6 @@ endif
 images.txt:
 	echo $(DOCKER)
 	$(KUBEADM) config images list > $@
-	echo "k8s.gcr.io/pause:3.6" >> $@
 	echo "docker.io/flannelcni/flannel:v0.17.0" >> $@
 
 images: images.txt

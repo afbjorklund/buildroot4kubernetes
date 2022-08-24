@@ -7,14 +7,20 @@ BUILDROOT_BRANCH = 2022.02.x
 KUBERNETES_VERSION = v1.25.0
 
 # Kubernetes requires go1.19 or greater.
-GOLANG_OPTIONS = GO_VERSION=1.19 GO_HASH_FILE=$(PWD)/external/go.hash
+BUILDROOT_OVERRIDES += GO_VERSION=1.19
 
-BUILDROOT_OPTIONS = BR2_EXTERNAL=$(PWD)/external $(GOLANG_OPTIONS)
+# Docker needs some security upgrades.
+BUILDROOT_OVERRIDES += DOCKER_ENGINE_VERSION=20.10.17
+BUILDROOT_OVERRIDES += CONTAINERD_VERSION=1.6.6
+BUILDROOT_OVERRIDES += RUNC_VERSION=1.1.2
+
+BUILDROOT_OPTIONS = BR2_EXTERNAL=$(PWD)/external $(BUILDROOT_OVERRIDES)
 
 buildroot:
 	git clone --single-branch --branch=$(BUILDROOT_BRANCH) \
 	          --no-tags --depth=1 https://github.com/buildroot/buildroot
-	@cp $(PWD)/external/go.hash buildroot/package/go/go.hash
+	@for pkg in go docker-engine containerd runc; do \
+	cp $(PWD)/external/override/$$pkg/* buildroot/package/$$pkg/; done
 
 BUILDROOT_MACHINE = $(shell uname -m | sed -e 's/arm64/aarch64/')
 

@@ -63,43 +63,14 @@ Required images:
 
 ```console
 $ kubeadm config images list
-k8s.gcr.io/kube-apiserver:v1.24.0
-k8s.gcr.io/kube-controller-manager:v1.24.0
-k8s.gcr.io/kube-scheduler:v1.24.0
-k8s.gcr.io/kube-proxy:v1.24.0
-k8s.gcr.io/pause:3.7
-k8s.gcr.io/etcd:3.5.3-0
-k8s.gcr.io/coredns/coredns:v1.8.6
-```
-
-`docker images`:
-
-linux/amd64
-```
-REPOSITORY                           TAG        IMAGE ID       CREATED         SIZE
-k8s.gcr.io/kube-apiserver            v1.24.0    529072250ccc   29 hours ago    130MB
-k8s.gcr.io/kube-proxy                v1.24.0    77b49675beae   29 hours ago    110MB
-k8s.gcr.io/kube-scheduler            v1.24.0    e3ed7dee73e9   29 hours ago    51MB
-k8s.gcr.io/kube-controller-manager   v1.24.0    88784fb4ac2f   29 hours ago    119MB
-k8s.gcr.io/pause                     3.7        221177c6082a   7 weeks ago     711kB
-k8s.gcr.io/etcd                      3.5.3-0    aebe758cef4c   2 weeks ago     299MB
-k8s.gcr.io/coredns/coredns           v1.8.6     a4ca41631cc7   6 months ago    46.8MB
-k8s.gcr.io/pause                     3.6        6270bb605e12   9 months ago    683kB
-flannelcni/flannel                   v0.17.0    9247abf08677   2 months ago    59.8MB
-```
-
-linux/arm64
-```
-REPOSITORY                           TAG        IMAGE ID       CREATED         SIZE
-k8s.gcr.io/kube-apiserver            v1.24.0    b62a103951f4   2 weeks ago     126MB
-k8s.gcr.io/kube-proxy                v1.24.0    66e1443684b0   2 weeks ago     106MB
-k8s.gcr.io/kube-scheduler            v1.24.0    b81513b3bfb4   2 weeks ago     50MB
-k8s.gcr.io/kube-controller-manager   v1.24.0    59fad34d4fe0   2 weeks ago     116MB
-k8s.gcr.io/pause                     3.7        e5a475a03805   2 months ago    514kB
-k8s.gcr.io/etcd                      3.5.3-0    a9a710bb96df   5 weeks ago     178MB
-k8s.gcr.io/coredns/coredns           v1.8.6     edaa71f2aee8   7 months ago    46.8MB
-k8s.gcr.io/pause                     3.6        7d46a07936af   9 months ago    484kB
-flannelcni/flannel                   v0.17.0    a8fbfb17608d   2 months ago    61.8MB
+registry.k8s.io/kube-apiserver:v1.25.0
+registry.k8s.io/kube-controller-manager:v1.25.0
+registry.k8s.io/kube-scheduler:v1.25.0
+registry.k8s.io/kube-proxy:v1.25.0
+registry.k8s.io/pause:3.8
+registry.k8s.io/etcd:3.5.4-0
+registry.k8s.io/coredns/coredns:v1.9.3
+docker.io/flannelcni/flannel:v0.19.1
 ```
 
 ![image size](image-size.png)
@@ -107,26 +78,26 @@ flannelcni/flannel                   v0.17.0    a8fbfb17608d   2 months ago    6
 `docker pull` (gzip):
 
 ```
-32M	images/k8s.gcr.io/kube-apiserver_v1.24.0
-37M	images/k8s.gcr.io/kube-proxy_v1.24.0
-15M	images/k8s.gcr.io/kube-scheduler_v1.24.0
-29M	images/k8s.gcr.io/kube-controller-manager_v1.24.0
-292K	images/k8s.gcr.io/pause_3.7
-97M	images/k8s.gcr.io/etcd_3.5.3-0
-13M	images/k8s.gcr.io/coredns/coredns_v1.8.6
-19M	images/docker.io/flannelcni/flannel_v0.17.0
-240M	total
+32M	images/registry.k8s.io/kube-apiserver_v1.25.0
+30M	images/registry.k8s.io/kube-controller-manager_v1.25.0
+15M	images/registry.k8s.io/kube-scheduler_v1.25.0
+19M	images/registry.k8s.io/kube-proxy_v1.25.0
+292K	images/registry.k8s.io/pause_3.8
+97M	images/registry.k8s.io/etcd_3.5.4-0
+14M	images/registry.k8s.io/coredns/coredns_v1.9.3
+20M	images/docker.io/flannelcni/flannel_v0.19.1
+225M	total
 ```
 
 `docker save | xz`:
 
 ```
-166M	images.txz
+156M	images.txz
 ```
 
 ```
 Strms  Blocks   Compressed Uncompressed  Ratio  Check   Filename
-    1      50    165.4 MiB    776.0 MiB  0.213  CRC32   images.txz
+    1      47    155.7 MiB    730.6 MiB  0.213  CRC32   images.txz
 ```
 
 Device layout:

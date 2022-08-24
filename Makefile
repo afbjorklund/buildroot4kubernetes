@@ -4,7 +4,7 @@ all: zip
 
 BUILDROOT_BRANCH = 2022.02.x
 
-KUBERNETES_VERSION = v1.24.0
+KUBERNETES_VERSION = v1.25.0
 
 # Kubernetes requires go1.19 or greater.
 GOLANG_OPTIONS = GO_VERSION=1.19 GO_HASH_FILE=$(PWD)/external/go.hash

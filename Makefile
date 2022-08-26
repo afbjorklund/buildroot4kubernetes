@@ -74,7 +74,7 @@ data.img:
 
 run: disk.img
 	test -e /dev/kvm && kvm=-enable-kvm; \
-	net="-net nic,model=virtio -net user"; \
+	net="-net nic,model=virtio -net user,hostfwd=tcp:127.0.0.1:6443-:6443"; \
 	test -e data.img && hdb="-drive file=data.img,if=virtio,index=1,media=disk"; \
 	test -e images.iso && hdd="-drive file=images.iso,if=virtio,index=3,media=cdrom"; \
 	qemu-system-x86_64 $$kvm -M pc -smp 2 -m 2048 $$net \

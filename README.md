@@ -70,6 +70,11 @@ registry.k8s.io/kube-proxy:v1.25.0
 registry.k8s.io/pause:3.8
 registry.k8s.io/etcd:3.5.4-0
 registry.k8s.io/coredns/coredns:v1.9.3
+```
+
+Additional images:
+
+```
 docker.io/flannelcni/flannel:v0.19.1
 ```
 

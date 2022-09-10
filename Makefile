@@ -10,16 +10,19 @@ KUBERNETES_VERSION = v1.25.0
 BUILDROOT_OVERRIDES += GO_VERSION=1.19
 
 # Docker needs some security upgrades.
-BUILDROOT_OVERRIDES += DOCKER_CLI_VERSION=20.10.17
-BUILDROOT_OVERRIDES += DOCKER_ENGINE_VERSION=20.10.17
-BUILDROOT_OVERRIDES += CONTAINERD_VERSION=1.6.6
-BUILDROOT_OVERRIDES += RUNC_VERSION=1.1.2
+BUILDROOT_OVERRIDES += DOCKER_CLI_VERSION=20.10.18
+BUILDROOT_OVERRIDES += DOCKER_ENGINE_VERSION=20.10.18
+BUILDROOT_OVERRIDES += CONTAINERD_VERSION=1.6.8
+BUILDROOT_OVERRIDES += RUNC_VERSION=1.1.4
 
 BUILDROOT_OPTIONS = BR2_EXTERNAL=$(PWD)/external $(BUILDROOT_OVERRIDES)
 
 buildroot:
 	git clone --single-branch --branch=$(BUILDROOT_BRANCH) \
 	          --no-tags --depth=1 https://github.com/buildroot/buildroot
+
+.PHONY: override
+override:
 	@for pkg in go docker-cli docker-engine containerd runc; do \
 	cp $(PWD)/external/override/$$pkg/* buildroot/package/$$pkg/; done
 
@@ -27,7 +30,7 @@ BUILDROOT_MACHINE = $(shell uname -m | sed -e 's/arm64/aarch64/')
 
 BUILDROOT_TARGET = kubernetes_$(BUILDROOT_MACHINE)_defconfig
 
-buildroot/.config: buildroot $(BUILDROOT_CONFIG)
+buildroot/.config: buildroot override $(BUILDROOT_CONFIG)
 	$(MAKE) -C buildroot $(BUILDROOT_OPTIONS) $(BUILDROOT_TARGET)
 
 # buildroot/dl

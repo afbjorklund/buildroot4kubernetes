@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-KINE_VERSION = 0.9.1
+KINE_VERSION = 0.9.4
 KINE_SITE = $(call github,k3s-io,kine,v$(KINE_VERSION))
 KINE_LICENSE = Apache-2.0
 KINE_LICENSE_FILES = LICENSE

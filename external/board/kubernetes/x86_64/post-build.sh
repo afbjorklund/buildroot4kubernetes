@@ -32,3 +32,4 @@ mkdir -p $TARGET_DIR/etc/systemd/system/getty@.service.d
 printf "[Service]\nTTYVTDisallocate=no\n" > $TARGET_DIR/etc/systemd/system/getty@.service.d/noclear.conf
 
 mkdir -p $TARGET_DIR/etc/systemd/system/docker.service.d
+ln -sf tini $TARGET_DIR/usr/bin/docker-init

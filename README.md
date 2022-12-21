@@ -41,7 +41,7 @@ Bootable image:
 
 x86_64
 ```
-176M	output/disk.img.gz
+192M	output/disk.img.gz
 ```
 
 Flashable image:
@@ -54,28 +54,28 @@ aarch64
 Kubernetes bin:
 
 ```
-43M	/usr/bin/kubeadm
-44M	/usr/bin/kubectl
-111M	/usr/bin/kubelet
+45M	/usr/bin/kubeadm
+46M	/usr/bin/kubectl
+116M	/usr/bin/kubelet
 ```
 
 Required images:
 
 ```console
 $ kubeadm config images list
-registry.k8s.io/kube-apiserver:v1.25.0
-registry.k8s.io/kube-controller-manager:v1.25.0
-registry.k8s.io/kube-scheduler:v1.25.0
-registry.k8s.io/kube-proxy:v1.25.0
-registry.k8s.io/pause:3.8
-registry.k8s.io/etcd:3.5.4-0
+registry.k8s.io/kube-apiserver:v1.26.0
+registry.k8s.io/kube-controller-manager:v1.26.0
+registry.k8s.io/kube-scheduler:v1.26.0
+registry.k8s.io/kube-proxy:v1.26.0
+registry.k8s.io/pause:3.9
+registry.k8s.io/etcd:3.5.6-0
 registry.k8s.io/coredns/coredns:v1.9.3
 ```
 
 Additional images:
 
 ```
-docker.io/flannelcni/flannel:v0.19.1
+docker.io/flannelcni/flannel:v0.20.2
 ```
 
 ![image size](image-size.png)
@@ -83,26 +83,26 @@ docker.io/flannelcni/flannel:v0.19.1
 `docker pull` (gzip):
 
 ```
-32M	images/registry.k8s.io/kube-apiserver_v1.25.0
-30M	images/registry.k8s.io/kube-controller-manager_v1.25.0
-15M	images/registry.k8s.io/kube-scheduler_v1.25.0
-19M	images/registry.k8s.io/kube-proxy_v1.25.0
-292K	images/registry.k8s.io/pause_3.8
-97M	images/registry.k8s.io/etcd_3.5.4-0
+33M	images/registry.k8s.io/kube-apiserver_v1.26.0
+31M	images/registry.k8s.io/kube-controller-manager_v1.26.0
+17M	images/registry.k8s.io/kube-scheduler_v1.26.0
+21M	images/registry.k8s.io/kube-proxy_v1.26.0
+304K	images/registry.k8s.io/pause_3.9
+97M	images/registry.k8s.io/etcd_3.5.6-0
 14M	images/registry.k8s.io/coredns/coredns_v1.9.3
-20M	images/docker.io/flannelcni/flannel_v0.19.1
-225M	total
+20M	images/docker.io/flannelcni/flannel_v0.20.2
+230M	total
 ```
 
 `docker save | xz`:
 
 ```
-156M	images.txz
+159M	images.txz
 ```
 
 ```
 Strms  Blocks   Compressed Uncompressed  Ratio  Check   Filename
-    1      47    155.7 MiB    730.6 MiB  0.213  CRC32   images.txz
+    1      48    158,2 MiB    745,9 MiB  0,212  CRC32   images.txz
 ```
 
 Device layout:

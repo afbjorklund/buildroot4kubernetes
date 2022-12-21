@@ -111,7 +111,7 @@ endif
 images.txt:
 	echo $(DOCKER)
 	$(KUBEADM) config images list > $@
-	echo "docker.io/flannelcni/flannel:v0.19.1" >> $@
+	echo "docker.io/flannelcni/flannel:v0.20.2" >> $@
 
 images: images.txt
 	xargs -n 1 $(DOCKER) pull --platform=$(GOOS)/$(GOARCH) < $<

@@ -4,7 +4,7 @@ all: zip
 
 BUILDROOT_BRANCH = 2022.02.x
 
-KUBERNETES_VERSION = v1.25.0
+KUBERNETES_VERSION = v1.26.0
 
 # Kubernetes requires go1.19 or greater.
 BUILDROOT_OVERRIDES += GO_VERSION=1.19.4

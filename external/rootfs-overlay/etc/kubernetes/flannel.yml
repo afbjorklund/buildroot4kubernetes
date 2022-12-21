@@ -22,6 +22,7 @@ rules:
   resources:
   - nodes
   verbs:
+  - get
   - list
   - watch
 - apiGroups:
@@ -30,6 +31,13 @@ rules:
   - nodes/status
   verbs:
   - patch
+- apiGroups:
+  - "networking.k8s.io"
+  resources:
+  - clustercidrs
+  verbs:
+  - list
+  - watch
 ---
 kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
@@ -122,7 +130,7 @@ spec:
       serviceAccountName: flannel
       initContainers:
       - name: install-cni
-        image: docker.io/flannelcni/flannel:v0.19.1
+        image: docker.io/flannelcni/flannel:v0.20.2
         command:
         - cp
         args:
@@ -136,7 +144,7 @@ spec:
           mountPath: /etc/kube-flannel/
       containers:
       - name: kube-flannel
-        image: docker.io/flannelcni/flannel:v0.19.1
+        image: docker.io/flannelcni/flannel:v0.20.2
         command:
         - /opt/bin/flanneld
         args:

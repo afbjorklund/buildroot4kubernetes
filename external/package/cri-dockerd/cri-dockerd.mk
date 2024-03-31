@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-CRI_DOCKERD_VERSION = 0.3.0
+CRI_DOCKERD_VERSION = 0.3.11
 CRI_DOCKERD_SITE = $(call github,Mirantis,cri-dockerd,v$(CRI_DOCKERD_VERSION))
 CRI_DOCKERD_LICENSE = Apache-2.0
 CRI_DOCKERD_LICENSE_FILES = LICENSE

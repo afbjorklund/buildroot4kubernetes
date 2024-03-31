@@ -1,3 +1,4 @@
 # Computed locally
-sha256 18c3e5eb2008232441889c77a819d33c42cadcc152ea6d2098e9d1ed83484fd8  cni-plugin-flannel-1.1.0.tar.gz
+sha256 98c68a0a595b4420a01055735a823f84cc5ba0eb2d351ba73f384a7cd95b9db6  cni-plugin-1.2.0.tar.gz
+sha256 74e98a12fd29e35fb7863e444580047a98cbaa8746892d995e68c6deeadea037  cni-plugin-flannel-1.2.0.tar.gz
 sha256 cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30  LICENSE

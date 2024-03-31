@@ -2,18 +2,18 @@
 
 all: zip
 
-BUILDROOT_BRANCH = 2022.02.x
+BUILDROOT_BRANCH = 2023.02.x
 
 KUBERNETES_VERSION = v1.26.0
 
-# Kubernetes requires go1.19 or greater.
-BUILDROOT_OVERRIDES += GO_VERSION=1.19.4
+# Kubernetes requires go1.21 or greater.
+BUILDROOT_OVERRIDES += GO_VERSION=1.21.8
 
 # Docker needs some security upgrades.
-BUILDROOT_OVERRIDES += DOCKER_CLI_VERSION=20.10.22
-BUILDROOT_OVERRIDES += DOCKER_ENGINE_VERSION=20.10.22
-BUILDROOT_OVERRIDES += CONTAINERD_VERSION=1.6.13
-BUILDROOT_OVERRIDES += RUNC_VERSION=1.1.4
+#BUILDROOT_OVERRIDES += DOCKER_CLI_VERSION=23.0.5
+#BUILDROOT_OVERRIDES += DOCKER_ENGINE_VERSION=23.0.5
+#BUILDROOT_OVERRIDES += CONTAINERD_VERSION=1.6.22
+#BUILDROOT_OVERRIDES += RUNC_VERSION=1.1.12
 
 BUILDROOT_OPTIONS = BR2_EXTERNAL=$(PWD)/external $(BUILDROOT_OVERRIDES)
 
@@ -23,7 +23,7 @@ buildroot:
 
 .PHONY: override
 override:
-	@for pkg in go docker-cli docker-engine containerd runc; do \
+	@for pkg in go cni-plugins docker-cli docker-engine containerd runc; do \
 	cp $(PWD)/external/override/$$pkg/* buildroot/package/$$pkg/; done
 
 BUILDROOT_MACHINE = $(shell uname -m | sed -e 's/arm64/aarch64/')

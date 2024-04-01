@@ -63,19 +63,19 @@ Required images:
 
 ```console
 $ kubeadm config images list
-registry.k8s.io/kube-apiserver:v1.26.0
-registry.k8s.io/kube-controller-manager:v1.26.0
-registry.k8s.io/kube-scheduler:v1.26.0
-registry.k8s.io/kube-proxy:v1.26.0
+registry.k8s.io/kube-apiserver:v1.28.8
+registry.k8s.io/kube-controller-manager:v1.28.8
+registry.k8s.io/kube-scheduler:v1.28.8
+registry.k8s.io/kube-proxy:v1.28.8
 registry.k8s.io/pause:3.9
-registry.k8s.io/etcd:3.5.6-0
-registry.k8s.io/coredns/coredns:v1.9.3
+registry.k8s.io/etcd:3.5.12-0
+registry.k8s.io/coredns/coredns:v1.10.1
 ```
 
 Additional images:
 
 ```
-docker.io/flannelcni/flannel:v0.20.2
+docker.io/flannel/flannel:v0.23.0
 ```
 
 ![image size](image-size.png)
@@ -83,26 +83,26 @@ docker.io/flannelcni/flannel:v0.20.2
 `docker pull` (gzip):
 
 ```
-33M	images/registry.k8s.io/kube-apiserver_v1.26.0
-31M	images/registry.k8s.io/kube-controller-manager_v1.26.0
-17M	images/registry.k8s.io/kube-scheduler_v1.26.0
-21M	images/registry.k8s.io/kube-proxy_v1.26.0
+33M	images/registry.k8s.io/kube-apiserver_v1.28.8
+32M	images/registry.k8s.io/kube-controller-manager_v1.28.8
+18M	images/registry.k8s.io/kube-scheduler_v1.28.8
+27M	images/registry.k8s.io/kube-proxy_v1.28.8
 304K	images/registry.k8s.io/pause_3.9
-97M	images/registry.k8s.io/etcd_3.5.6-0
-14M	images/registry.k8s.io/coredns/coredns_v1.9.3
-20M	images/docker.io/flannelcni/flannel_v0.20.2
-230M	total
+54M	images/registry.k8s.io/etcd_3.5.12-0
+16M	images/registry.k8s.io/coredns/coredns_v1.10.1
+27M	images/docker.io/flannel/flannel_v0.23.0
+203M	total
 ```
 
 `docker save | xz`:
 
 ```
-159M	images.txz
+139M	images.txz
 ```
 
 ```
 Strms  Blocks   Compressed Uncompressed  Ratio  Check   Filename
-    1      48    158,2 MiB    745,9 MiB  0,212  CRC32   images.txz
+    1      41    138,8 MiB    630,0 MiB  0,220  CRC32   images.txz
 ```
 
 Device layout:

@@ -10,6 +10,8 @@ KUBERNETES_VERSION = v1.28.8
 #BUILDROOT_OVERRIDES += CRI_TOOLS_VERSION=1.28.0
 #BUILDROOT_OVERRIDES += CNI_PLUGINS_VERSION=1.2.0
 
+FLANNEL_VERSION = v0.23.0
+
 # Kubernetes requires go1.21 or greater.
 BUILDROOT_OVERRIDES += GO_VERSION=1.21.8
 
@@ -115,7 +117,7 @@ endif
 images.txt:
 	echo $(DOCKER)
 	$(KUBEADM) config images list > $@
-	echo "docker.io/flannelcni/flannel:v0.20.2" >> $@
+	echo "docker.io/flannel/flannel:$(FLANNEL_VERSION)" >> $@
 
 images: images.txt
 	xargs -n 1 $(DOCKER) pull --platform=$(GOOS)/$(GOARCH) < $<
